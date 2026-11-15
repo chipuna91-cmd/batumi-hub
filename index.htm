@@ -1,1 +1,303 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Batumi Hub</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            background: #f5f6f8;
+            color: #111827;
+        }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: 0 auto;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 22px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .language {
+            border: none;
+            background: #f1f3f5;
+            padding: 9px 13px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .hero {
+            padding: 55px 0 35px;
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 6vw, 58px);
+            line-height: 1.05;
+            letter-spacing: -1.5px;
+            max-width: 750px;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #6b7280;
+            max-width: 650px;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .search {
+            width: 100%;
+            max-width: 700px;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 16px 18px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search:focus {
+            border-color: #9ca3af;
+        }
+
+        .section {
+            padding: 25px 0 60px;
+        }
+
+        .section-title {
+            font-size: 26px;
+            margin-bottom: 22px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .category {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 24px 18px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .category:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        }
+
+        .icon {
+            font-size: 34px;
+            margin-bottom: 14px;
+        }
+
+        .category h3 {
+            font-size: 17px;
+            margin-bottom: 6px;
+        }
+
+        .category p {
+            font-size: 13px;
+            color: #6b7280;
+            line-height: 1.4;
+        }
+
+        footer {
+            background: #111827;
+            color: #ffffff;
+            padding: 30px 0;
+            margin-top: 30px;
+        }
+
+        footer p {
+            color: #9ca3af;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 800px) {
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .categories {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 38px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container header-inner">
+        <div class="logo">BATUMI HUB</div>
+
+        <button class="language">
+            RU
+        </button>
+    </div>
+</header>
+
+<main>
+
+    <section class="hero">
+        <div class="container">
+
+            <h1>
+                Всё необходимое<br>
+                в Батуми — в одном месте.
+            </h1>
+
+            <p>
+                Находите услуги, компании и развлечения,
+                сравнивайте предложения и записывайтесь онлайн.
+            </p>
+
+            <input
+                class="search"
+                type="text"
+                placeholder="Что вы ищете?"
+            >
+
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+
+            <h2 class="section-title">
+                Категории
+            </h2>
+
+            <div class="categories">
+
+                <div class="category">
+                    <div class="icon">🏠</div>
+                    <h3>Апартаменты</h3>
+                    <p>Жильё и размещение</p>
+                </div>
+
+                <div class="category">
+                    <div class="icon">🚗</div>
+                    <h3>Аренда авто</h3>
+                    <p>Автомобили напрокат</p>
+                </div>
+
+                <div class="category">
+                    <div class="icon">🚕</div>
+                    <h3>Трансферы</h3>
+                    <p>Аэропорт и поездки</p>
+                </div>
+
+                <div class="category">
+                    <div class="icon">🚌</div>
+                    <h3>Экскурсии</h3>
+                    <p>Туры и развлечения</p>
+                </div>
+
+                <div class="category">
+                    <div class="icon">🍽️</div>
+                    <h3>Рестораны</h3>
+                    <p>Еда и бронирование</p>
+                </div>
+
+                <div class="category">
+                    <div class="icon">💇</div>
+                    <h3>Салоны</h3>
+                    <p>Красота и уход</p>
+                </div>
+
+                <div class="category">
+                    <div class="icon">💈</div>
+                    <h3>Барбершопы</h3>
+                    <p>Мужские стрижки и уход</p>
+                </div>
+
+                <div class="category">
+                    <div class="icon">🧠</div>
+                    <h3>Психология</h3>
+                    <p>Психологи и консультации</p>
+                </div>
+
+                <div class="category">
+                    <div class="icon">🦷</div>
+                    <h3>Стоматология</h3>
+                    <p>Стоматологи и клиники</p>
+                </div>
+
+                <div class="category">
+                    <div class="icon">💆</div>
+                    <h3>Косметология</h3>
+                    <p>Косметология и процедуры</p>
+                </div>
+
+                <div class="category">
+                    <div class="icon">🏋️</div>
+                    <h3>Фитнес</h3>
+                    <p>Спорт и тренировки</p>
+                </div>
+
+                <div class="category">
+                    <div class="icon">🗣️</div>
+                    <h3>Языковые школы</h3>
+                    <p>Языки и обучение</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <strong>BATUMI HUB</strong>
+        <p>
+            Сервисы, бизнесы и услуги Батуми в одном месте.
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
