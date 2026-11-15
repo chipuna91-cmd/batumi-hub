@@ -72,21 +72,23 @@
             font-size: 15px;
             opacity: 0.92;
         }
-        .languages {
-            display: flex;
-            gap: 8px;
-            margin-top: 18px;
-        }
-        .language-button {
-            border: 1px solid rgba(255,255,255,0.45);
-            background: rgba(255,255,255,0.16);
-            color: white;
-            padding: 8px 13px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 13px;
-            backdrop-filter: blur(8px);
-        }
+        <!-- ЗАМЕНИ ТОЛЬКО ЭТОТ БЛОК -->
+
+<div class="languages">
+
+    <button class="language-button" title="ქართული">
+        🇬🇪
+    </button>
+
+    <button class="language-button" title="Русский">
+        🇷🇺
+    </button>
+
+    <button class="language-button" title="English">
+        🇬🇧
+    </button>
+
+</div>
         .language-button:hover {
             background: rgba(255,255,255,0.28);
         }
