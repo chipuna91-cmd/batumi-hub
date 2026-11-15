@@ -14,266 +14,321 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             min-height: 100vh;
             background:
+                radial-gradient(
+                    circle at 0% 0%,
+                    #feda75 0%,
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 100% 0%,
+                    #fa7e1e 0%,
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 0% 100%,
+                    #d62976 0%,
+                    transparent 38%
+                ),
+                radial-gradient(
+                    circle at 100% 100%,
+                    #962fbf 0%,
+                    transparent 40%
+                ),
                 linear-gradient(
                     135deg,
-                    #fff3a6 0%,
-                    #ffd1a9 22%,
-                    #ff9fb5 45%,
-                    #d9a7ff 70%,
-                    #8fc8ff 100%
+                    #feda75 0%,
+                    #fa7e1e 25%,
+                    #d62976 50%,
+                    #962fbf 75%,
+                    #4f5bd5 100%
                 );
-            color: #222;
+            color: #2d1838;
         }
-        .header {
-            padding: 24px 16px 20px;
+        header {
             background:
                 linear-gradient(
                     135deg,
-                    #ffdc6a 0%,
-                    #ff9a9e 38%,
-                    #c77dff 70%,
-                    #72b7ff 100%
+                    #4f5bd5 0%,
+                    #962fbf 30%,
+                    #d62976 60%,
+                    #fa7e1e 85%,
+                    #feda75 100%
                 );
-            border-bottom-left-radius: 28px;
-            border-bottom-right-radius: 28px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            color: white;
+            padding: 28px 20px 24px;
+            box-shadow: 0 8px 30px rgba(80, 30, 100, 0.25);
         }
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
         }
         .logo {
-            font-size: 28px;
-            font-weight: 900;
-            color: white;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -1px;
         }
         .subtitle {
-            margin-top: 5px;
-            color: rgba(255,255,255,0.95);
-            font-size: 14px;
-            font-weight: 500;
+            margin-top: 6px;
+            font-size: 15px;
+            opacity: 0.92;
         }
+        /* ТОЛЬКО ФЛАГИ */
         .languages {
             display: flex;
             align-items: center;
-            gap: 7px;
+            gap: 8px;
+            margin-top: 14px;
         }
-        /* ФЛАГИ — только изображения, никаких букв */
         .language-button {
             width: 42px;
-            height: 36px;
-            padding: 4px;
-            border: none;
-            border-radius: 10px;
-            background: rgba(255,255,255,0.82);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+            height: 30px;
+            padding: 3px;
+            border: 1px solid rgba(255,255,255,0.45);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.16);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            transition: 0.2s ease;
+            transition: background 0.2s ease;
         }
         .language-button svg {
-            width: 30px;
+            width: 32px;
             height: 21px;
             display: block;
             border-radius: 2px;
         }
-        .language-button.active {
-            transform: translateY(-2px) scale(1.05);
-            background: white;
-            box-shadow: 0 5px 14px rgba(0,0,0,0.20);
-        }
         .language-button:hover {
-            transform: translateY(-2px);
+            background: rgba(255,255,255,0.28);
         }
-        .search-wrap {
-            margin-top: 18px;
+        .search-container {
+            max-width: 1100px;
+            margin: 20px auto 0;
         }
-        .search {
+        .search-input {
             width: 100%;
             padding: 15px 18px;
             border: none;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.94);
+            color: #35143f;
+            font-size: 15px;
             outline: none;
-            border-radius: 18px;
-            background: rgba(255,255,255,0.95);
-            font-size: 16px;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.10);
+            box-shadow:
+                0 8px 25px rgba(80, 20, 100, 0.18);
         }
-        .container {
-            width: 100%;
+        .search-input::placeholder {
+            color: #927f9b;
+        }
+        main {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 22px 14px 40px;
+            padding: 28px 20px 50px;
         }
         .categories {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(145px, 1fr)
+            );
             gap: 12px;
         }
         .category {
-            border: none;
-            padding: 17px 12px;
-            border-radius: 18px;
-            background: rgba(255,255,255,0.90);
-            color: #333;
-            font-size: 14px;
-            font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.55);
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.88),
+                    rgba(255,240,249,0.88)
+                );
+            color: #522060;
+            padding: 15px 12px;
+            border-radius: 16px;
+            text-align: center;
             cursor: pointer;
-            box-shadow: 0 5px 16px rgba(0,0,0,0.08);
-            transition: 0.2s ease;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow:
+                0 7px 20px rgba(100, 30, 120, 0.13);
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
         }
         .category:hover {
             transform: translateY(-2px);
+            box-shadow:
+                0 10px 25px rgba(120, 30, 130, 0.22);
         }
         .category.active {
-            color: white;
             background:
                 linear-gradient(
                     135deg,
-                    #ff8a65,
-                    #e85d9e,
-                    #8e6ce8
+                    #4f5bd5,
+                    #962fbf,
+                    #d62976
                 );
-            box-shadow: 0 7px 18px rgba(160,70,150,0.28);
+            color: white;
+            box-shadow:
+                0 8px 25px rgba(150, 47, 191, 0.35);
         }
-        .section-title {
-            margin: 28px 4px 14px;
-            font-size: 22px;
-            font-weight: 850;
-            color: #222;
+        .results-section {
+            margin-top: 30px;
         }
-        .businesses {
+        .results-title {
+            color: white;
+            font-size: 23px;
+            font-weight: 750;
+            margin-bottom: 16px;
+            text-shadow:
+                0 2px 10px rgba(70, 20, 90, 0.25);
+        }
+        .businesses-list {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(280px, 1fr)
+                );
+            gap: 18px;
         }
         .business-card {
             overflow: hidden;
-            border-radius: 22px;
-            background: rgba(255,255,255,0.94);
-            box-shadow: 0 8px 22px rgba(0,0,0,0.11);
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.96),
+                    rgba(255,240,249,0.96)
+                );
+            border: 1px solid rgba(255,255,255,0.75);
+            border-radius: 20px;
+            box-shadow:
+                0 12px 35px rgba(90, 20, 110, 0.20);
         }
         .business-image {
             width: 100%;
-            height: 210px;
+            height: 190px;
             object-fit: cover;
             display: block;
-            background: #eee;
         }
-        .business-content {
-            padding: 16px;
-        }
-        .business-name {
-            font-size: 20px;
-            font-weight: 800;
-            color: #222;
-        }
-        .business-description {
-            margin-top: 7px;
-            color: #555;
-            font-size: 14px;
-            line-height: 1.45;
-        }
-        .business-info {
-            margin-top: 12px;
-            color: #555;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        .details-button {
+        .business-image-placeholder {
             width: 100%;
-            margin-top: 14px;
-            padding: 13px;
-            border: none;
-            border-radius: 14px;
-            color: white;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
+            height: 190px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 52px;
             background:
                 linear-gradient(
                     135deg,
-                    #ff8a65,
-                    #e85d9e,
-                    #8e6ce8
+                    #4f5bd5,
+                    #962fbf,
+                    #d62976,
+                    #fa7e1e
                 );
         }
-        .status {
+        .business-content {
+            padding: 18px;
+        }
+        .business-name {
+            color: #4f1d67;
+            font-size: 20px;
+            font-weight: 750;
+            margin-bottom: 8px;
+        }
+        .business-description {
+            color: #654c70;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        .business-info {
+            color: #73577e;
+            font-size: 14px;
+            margin-top: 7px;
+        }
+        .details-button {
+            margin-top: 16px;
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 12px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f5bd5,
+                    #962fbf,
+                    #d62976
+                );
+            color: white;
+            font-size: 14px;
+            font-weight: 650;
+            box-shadow:
+                0 5px 15px rgba(150, 47, 191, 0.25);
+        }
+        .details-button:hover {
+            background:
+                linear-gradient(
+                    135deg,
+                    #962fbf,
+                    #d62976,
+                    #fa7e1e
+                );
+        }
+        .empty-state {
+            padding: 35px 20px;
             text-align: center;
-            padding: 30px 10px;
-            color: #555;
+            background: rgba(255,255,255,0.88);
+            border-radius: 18px;
+            color: #704f7b;
+            box-shadow:
+                0 10px 25px rgba(100, 30, 120, 0.15);
+        }
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: white;
             font-size: 15px;
         }
-        @media (min-width: 700px) {
+        @media (max-width: 600px) {
+            header {
+                padding: 23px 15px 20px;
+            }
+            .logo {
+                font-size: 28px;
+            }
+            main {
+                padding: 22px 15px 40px;
+            }
             .categories {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
-            .businesses {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (min-width: 1000px) {
-            .categories {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            .businesses {
-                grid-template-columns: repeat(3, 1fr);
+            .businesses-list {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-<header class="header">
-    <div class="header-top">
-        <div>
-            <div class="logo">
-                BATUMI HUB
-            </div>
-            <div
-                class="subtitle"
-                id="subtitle"
-                data-i18n="subtitle"
-            >
-                Все услуги Батуми в одном месте
-            </div>
+<header>
+    <div class="header-inner">
+        <div class="logo">
+            Batumi Hub
+        </div>
+        <div class="subtitle">
+            Все услуги Батуми в одном месте
         </div>
         <div class="languages">
-            <!-- ГРУЗИЯ -->
+            <!-- ФЛАГ ГРУЗИИ -->
             <button
                 class="language-button"
-                data-language="ka"
                 title="ქართული"
                 aria-label="ქართული"
             >
-                <svg
-                    viewBox="0 0 280 180"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <rect
-                        width="280"
-                        height="180"
-                        fill="#ffffff"
-                    />
-                    <rect
-                        x="132"
-                        y="0"
-                        width="16"
-                        height="180"
-                        fill="#d40000"
-                    />
-                    <rect
-                        x="0"
-                        y="82"
-                        width="280"
-                        height="16"
-                        fill="#d40000"
-                    />
+                <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="280" height="180" fill="#ffffff"/>
+                    <rect x="132" y="0" width="16" height="180" fill="#d40000"/>
+                    <rect x="0" y="82" width="280" height="16" fill="#d40000"/>
                     <g fill="#d40000">
                         <rect x="45" y="24" width="10" height="52"/>
                         <rect x="24" y="45" width="52" height="10"/>
@@ -286,52 +341,26 @@
                     </g>
                 </svg>
             </button>
-            <!-- РОССИЯ -->
+            <!-- ФЛАГ РОССИИ -->
             <button
                 class="language-button"
-                data-language="ru"
                 title="Русский"
                 aria-label="Русский"
             >
-                <svg
-                    viewBox="0 0 280 180"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <rect
-                        width="280"
-                        height="60"
-                        fill="#ffffff"
-                    />
-                    <rect
-                        y="60"
-                        width="280"
-                        height="60"
-                        fill="#0052b4"
-                    />
-                    <rect
-                        y="120"
-                        width="280"
-                        height="60"
-                        fill="#d80027"
-                    />
+                <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="280" height="60" fill="#ffffff"/>
+                    <rect y="60" width="280" height="60" fill="#0052b4"/>
+                    <rect y="120" width="280" height="60" fill="#d80027"/>
                 </svg>
             </button>
-            <!-- ВЕЛИКОБРИТАНИЯ -->
+            <!-- ФЛАГ ВЕЛИКОБРИТАНИИ -->
             <button
                 class="language-button"
-                data-language="en"
                 title="English"
                 aria-label="English"
             >
-                <svg
-                    viewBox="0 0 280 180"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <rect
-                        width="280"
-                        height="180"
-                        fill="#012169"
-                    />
+                <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="280" height="180" fill="#012169"/>
                     <path
                         d="M0 0 L32 0 L280 148 L280 180 L248 180 L0 32 Z"
                         fill="#ffffff"
@@ -375,600 +404,265 @@
                 </svg>
             </button>
         </div>
-    </div>
-    <!-- ПОИСК: БЕЗ ТЕКСТА И PLACEHOLDER -->
-    <div class="search-wrap">
-        <input
-            type="text"
-            id="searchInput"
-            class="search"
-            autocomplete="off"
-            aria-label="Search"
-        >
-    </div>
-</header>
-<main class="container">
-    <div class="categories">
-        <button
-            class="category active"
-            data-category="all"
-            data-i18n="all"
-        >
-            Все
-        </button>
-        <button
-            class="category"
-            data-category="apartments"
-            data-i18n="apartments"
-        >
-            Квартиры
-        </button>
-        <button
-            class="category"
-            data-category="excursions"
-            data-i18n="excursions"
-        >
-            Экскурсии
-        </button>
-        <button
-            class="category"
-            data-category="transfers"
-            data-i18n="transfers"
-        >
-            Трансферы
-        </button>
-        <button
-            class="category"
-            data-category="car_rental"
-            data-i18n="car_rental"
-        >
-            Аренда авто
-        </button>
-        <button
-            class="category"
-            data-category="restaurants"
-            data-i18n="restaurants"
-        >
-            Рестораны
-        </button>
-        <button
-            class="category"
-            data-category="salons"
-            data-i18n="salons"
-        >
-            Салоны
-        </button>
-        <button
-            class="category"
-            data-category="barbershops"
-            data-i18n="barbershops"
-        >
-            Барбершопы
-        </button>
-        <button
-            class="category"
-            data-category="psychology"
-            data-i18n="psychology"
-        >
-            Психология
-        </button>
-        <button
-            class="category"
-            data-category="dentistry"
-            data-i18n="dentistry"
-        >
-            Стоматология
-        </button>
-        <button
-            class="category"
-            data-category="cosmetology"
-            data-i18n="cosmetology"
-        >
-            Косметология
-        </button>
-        <button
-            class="category"
-            data-category="fitness"
-            data-i18n="fitness"
-        >
-            Фитнес
-        </button>
-        <button
-            class="category"
-            data-category="language_schools"
-            data-i18n="language_schools"
-        >
-            Языковые школы
-        </button>
-    </div>
-    <h2
-        class="section-title"
-        id="businessesTitle"
-        data-i18n="businesses"
-    >
-        Бизнесы и услуги
-    </h2>
-    <div
-        id="businesses"
-        class="businesses"
-    >
-        <div
-            class="status"
-            id="loading"
-            data-i18n="loading"
-        >
-            Загружаем...
+        <div class="search-container">
+            <input
+                type="text"
+                id="searchInput"
+                class="search-input"
+                placeholder="Поиск бизнеса или услуги..."
+            >
         </div>
     </div>
+</header>
+<main>
+    <div class="categories">
+        <div class="category" data-category="apartments">
+            🏠 Апартаменты
+        </div>
+        <div class="category" data-category="car_rental">
+            🚗 Аренда авто
+        </div>
+        <div class="category" data-category="transfers">
+            🚕 Трансферы
+        </div>
+        <div class="category" data-category="excursions">
+            🗺️ Экскурсии
+        </div>
+        <div class="category" data-category="restaurants">
+            🍽️ Рестораны
+        </div>
+        <div class="category" data-category="salons">
+            💇 Салоны
+        </div>
+        <div class="category" data-category="barbershops">
+            💈 Барбершопы
+        </div>
+        <div class="category" data-category="psychology">
+            🧠 Психология
+        </div>
+        <div class="category" data-category="dentistry">
+            🦷 Стоматология
+        </div>
+        <div class="category" data-category="cosmetology">
+            💄 Косметология
+        </div>
+        <div class="category" data-category="fitness">
+            🏋️ Фитнес
+        </div>
+        <div class="category" data-category="language_schools">
+            📚 Языковые школы
+        </div>
+    </div>
+    <div class="results-section">
+        <div class="results-title">
+            Бизнесы
+        </div>
+        <div
+            id="businessesList"
+            class="businesses-list"
+        ></div>
+    </div>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
     const SUPABASE_URL =
         "https://mzbweaovalklyojtdrmq.supabase.co";
     const SUPABASE_KEY =
         "sb_publishable_uaJkPRsPjlYnv-JPUU0UfA_EV9JEzmx";
-    const translations = {
-        ru: {
-            subtitle: "Все услуги Батуми в одном месте",
-            all: "Все",
-            businesses: "Бизнесы и услуги",
-            loading: "Загружаем...",
-            empty:
-                "В этой категории пока нет бизнесов.",
-            error:
-                "Не удалось загрузить бизнесы.",
-            details:
-                "Подробнее →",
-            noName:
-                "Без названия",
-            apartments:
-                "Квартиры",
-            excursions:
-                "Экскурсии",
-            transfers:
-                "Трансферы",
-            car_rental:
-                "Аренда авто",
-            restaurants:
-                "Рестораны",
-            salons:
-                "Салоны",
-            barbershops:
-                "Барбершопы",
-            psychology:
-                "Психология",
-            dentistry:
-                "Стоматология",
-            cosmetology:
-                "Косметология",
-            fitness:
-                "Фитнес",
-            language_schools:
-                "Языковые школы"
-        },
-        ka: {
-            subtitle:
-                "ბათუმის ყველა სერვისი ერთ ადგილზე",
-            all:
-                "ყველა",
-            businesses:
-                "ბიზნესები და სერვისები",
-            loading:
-                "იტვირთება...",
-            empty:
-                "ამ კატეგორიაში ჯერ ბიზნესი არ არის.",
-            error:
-                "ბიზნესების ჩატვირთვა ვერ მოხერხდა.",
-            details:
-                "დეტალურად →",
-            noName:
-                "სახელის გარეშე",
-            apartments:
-                "ბინები",
-            excursions:
-                "ექსკურსიები",
-            transfers:
-                "ტრანსფერები",
-            car_rental:
-                "მანქანის ქირაობა",
-            restaurants:
-                "რესტორნები",
-            salons:
-                "სალონები",
-            barbershops:
-                "ბარბერშოპები",
-            psychology:
-                "ფსიქოლოგია",
-            dentistry:
-                "სტომატოლოგია",
-            cosmetology:
-                "კოსმეტოლოგია",
-            fitness:
-                "ფიტნესი",
-            language_schools:
-                "ენის სკოლები"
-        },
-        en: {
-            subtitle:
-                "All Batumi services in one place",
-            all:
-                "All",
-            businesses:
-                "Businesses & Services",
-            loading:
-                "Loading...",
-            empty:
-                "There are no businesses in this category yet.",
-            error:
-                "Failed to load businesses.",
-            details:
-                "Details →",
-            noName:
-                "Unnamed",
-            apartments:
-                "Apartments",
-            excursions:
-                "Excursions",
-            transfers:
-                "Transfers",
-            car_rental:
-                "Car Rental",
-            restaurants:
-                "Restaurants",
-            salons:
-                "Salons",
-            barbershops:
-                "Barbershops",
-            psychology:
-                "Psychology",
-            dentistry:
-                "Dentistry",
-            cosmetology:
-                "Cosmetology",
-            fitness:
-                "Fitness",
-            language_schools:
-                "Language Schools"
-        }
-    };
-    let businesses = [];
-    let selectedCategory = "all";
-    let currentLanguage =
-        localStorage.getItem(
-            "batumiHubLanguage"
-        ) || "ru";
-    function t(key) {
-        return (
-            translations[currentLanguage][key]
-            ||
-            translations.ru[key]
-            ||
-            key
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
         );
-    }
-    function applyLanguage(language) {
-        if (!translations[language]) {
-            language = "ru";
-        }
-        currentLanguage = language;
-        localStorage.setItem(
-            "batumiHubLanguage",
-            language
+    const businessesList =
+        document.getElementById(
+            "businessesList"
         );
-        document.documentElement.lang =
-            language === "ka"
-                ? "ka"
-                : language;
-        document
-            .querySelectorAll("[data-i18n]")
-            .forEach(element => {
-                const key =
-                    element.dataset.i18n;
-                if (
-                    translations[language][key]
-                ) {
-                    element.textContent =
-                        translations[language][key];
-                }
-            });
-        document
-            .querySelectorAll(".language-button")
-            .forEach(button => {
-                button.classList.toggle(
-                    "active",
-                    button.dataset.language === language
-                );
-            });
+    const searchInput =
+        document.getElementById(
+            "searchInput"
+        );
+    const categories =
+        document.querySelectorAll(
+            ".category"
+        );
+    let allBusinesses = [];
+    let selectedCategory = "";
+    async function loadBusinesses() {
+        businessesList.innerHTML = `
+            <div class="loading">
+                Загружаем бизнесы...
+            </div>
+        `;
+        const result =
+            await supabaseClient
+                .from("businesses")
+                .select("*")
+                .eq("status", "active");
+        if (result.error) {
+            businessesList.innerHTML = `
+                <div class="empty-state">
+                    Ошибка загрузки бизнесов
+                </div>
+            `;
+            console.error(result.error);
+            return;
+        }
+        allBusinesses =
+            result.data || [];
         renderBusinesses();
     }
-    function escapeHtml(value) {
-        if (
-            value === null ||
-            value === undefined
-        ) {
-            return "";
-        }
-        return String(value)
-            .replace(
-                /&/g,
-                "&amp;"
-            )
-            .replace(
-                /</g,
-                "&lt;"
-            )
-            .replace(
-                />/g,
-                "&gt;"
-            )
-            .replace(
-                /"/g,
-                "&quot;"
-            )
-            .replace(
-                /'/g,
-                "&#039;"
-            );
-    }
-    function getCategoryName(category) {
-        const key =
-            category || "";
-        return (
-            t(key) ||
-            key
-        );
-    }
     function renderBusinesses() {
-        const container =
-            document.getElementById(
-                "businesses"
-            );
-        const searchValue =
-            document
-                .getElementById(
-                    "searchInput"
-                )
-                .value
+        const searchText =
+            searchInput.value
                 .trim()
                 .toLowerCase();
-        const filtered =
-            businesses.filter(
-                business => {
-                    const categoryMatch =
-                        selectedCategory === "all"
-                        ||
-                        business.category ===
+        let filtered =
+            allBusinesses.filter(
+                function(business) {
+                    const matchesSearch =
+                        !searchText ||
+                        String(
+                            business.name || ""
+                        )
+                        .toLowerCase()
+                        .includes(searchText) ||
+                        String(
+                            business.description || ""
+                        )
+                        .toLowerCase()
+                        .includes(searchText) ||
+                        String(
+                            business.address || ""
+                        )
+                        .toLowerCase()
+                        .includes(searchText) ||
+                        String(
+                            business.category || ""
+                        )
+                        .toLowerCase()
+                        .includes(searchText);
+                    const matchesCategory =
+                        !selectedCategory ||
+                        String(
+                            business.category || ""
+                        )
+                        .trim()
+                        .toLowerCase()
+                        ===
                         selectedCategory;
-                    if (!categoryMatch) {
-                        return false;
-                    }
-                    if (!searchValue) {
-                        return true;
-                    }
-                    const text = [
-                        business.name,
-                        business.description,
-                        business.address,
-                        business.category
-                    ]
-                        .filter(Boolean)
-                        .join(" ")
-                        .toLowerCase();
-                    return text.includes(
-                        searchValue
+                    return (
+                        matchesSearch &&
+                        matchesCategory
                     );
                 }
             );
-        if (
-            filtered.length === 0
-        ) {
-            container.innerHTML = `
-                <div class="status">
-                    ${escapeHtml(
-                        t("empty")
-                    )}
+        businessesList.innerHTML = "";
+        if (filtered.length === 0) {
+            businessesList.innerHTML = `
+                <div class="empty-state">
+                    Пока здесь нет добавленных бизнесов.
                 </div>
             `;
             return;
         }
-        container.innerHTML =
-            filtered
-                .map(
-                    business => {
-                        const image =
-                            business.image_url
-                            ||
-                            "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80";
-                        return `
-                            <article class="business-card">
-                                <img
-                                    class="business-image"
-                                    src="${escapeHtml(image)}"
-                                    alt="${escapeHtml(
-                                        business.name ||
-                                        t("noName")
-                                    )}"
-                                >
-                                <div class="business-content">
-                                    <div class="business-name">
-                                        ${escapeHtml(
-                                            business.name ||
-                                            t("noName")
-                                        )}
-                                    </div>
-                                    ${
-                                        business.description
-                                        ?
-                                        `
-                                            <div class="business-description">
-                                                ${escapeHtml(
-                                                    business.description
-                                                )}
-                                            </div>
-                                        `
-                                        :
-                                        ""
-                                    }
-                                    <div class="business-info">
-                                        ${
-                                            business.category
-                                            ?
-                                            `
-                                                <div>
-                                                    ${escapeHtml(
-                                                        getCategoryName(
-                                                            business.category
-                                                        )
-                                                    )}
-                                                </div>
-                                            `
-                                            :
-                                            ""
-                                        }
-                                        ${
-                                            business.address
-                                            ?
-                                            `
-                                                <div>
-                                                    📍
-                                                    ${escapeHtml(
-                                                        business.address
-                                                    )}
-                                                </div>
-                                            `
-                                            :
-                                            ""
-                                        }
-                                        ${
-                                            business.phone
-                                            ?
-                                            `
-                                                <div>
-                                                    📞
-                                                    ${escapeHtml(
-                                                        business.phone
-                                                    )}
-                                                </div>
-                                            `
-                                            :
-                                            ""
-                                        }
-                                    </div>
-                                    <button
-                                        class="details-button"
-                                        type="button"
-                                    >
-                                        ${escapeHtml(
-                                            t("details")
-                                        )}
-                                    </button>
+        filtered.forEach(
+            function(business) {
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+                card.className =
+                    "business-card";
+                let imageHTML;
+                if (business.image_url) {
+                    imageHTML = `
+                        <img
+                            class="business-image"
+                            src="${business.image_url}"
+                            alt="${business.name || "Business"}"
+                        >
+                    `;
+                } else {
+                    imageHTML = `
+                        <div class="business-image-placeholder">
+                            🏢
+                        </div>
+                    `;
+                }
+                card.innerHTML = `
+                    ${imageHTML}
+                    <div class="business-content">
+                        <div class="business-name">
+                            ${business.name || "Без названия"}
+                        </div>
+                        ${
+                            business.description
+                            ? `
+                                <div class="business-description">
+                                    ${business.description}
                                 </div>
-                            </article>
-                        `;
-                    }
-                )
-                .join("");
-    }
-    async function loadBusinesses() {
-        const container =
-            document.getElementById(
-                "businesses"
-            );
-        container.innerHTML = `
-            <div class="status">
-                ${escapeHtml(
-                    t("loading")
-                )}
-            </div>
-        `;
-        try {
-            const response =
-                await fetch(
-                    SUPABASE_URL +
-                    "/rest/v1/businesses?select=*&status=eq.active",
-                    {
-                        method: "GET",
-                        headers: {
-                            "apikey":
-                                SUPABASE_KEY,
-                            "Authorization":
-                                "Bearer " +
-                                SUPABASE_KEY,
-                            "Content-Type":
-                                "application/json"
+                            `
+                            : ""
                         }
-                    }
-                );
-            if (!response.ok) {
-                throw new Error(
-                    "HTTP " +
-                    response.status
+                        ${
+                            business.address
+                            ? `
+                                <div class="business-info">
+                                    📍 ${business.address}
+                                </div>
+                            `
+                            : ""
+                        }
+                        ${
+                            business.phone
+                            ? `
+                                <div class="business-info">
+                                    📞 ${business.phone}
+                                </div>
+                            `
+                            : ""
+                        }
+                        <div class="details-button">
+                            Подробнее →
+                        </div>
+                    </div>
+                `;
+                businessesList.appendChild(
+                    card
                 );
             }
-            businesses =
-                await response.json();
-            renderBusinesses();
-        }
-        catch (error) {
-            console.error(error);
-            container.innerHTML = `
-                <div class="status">
-                    ${escapeHtml(
-                        t("error")
-                    )}
-                </div>
-            `;
-        }
+        );
     }
-    document
-        .querySelectorAll(
-            ".language-button"
-        )
-        .forEach(button => {
-            button.addEventListener(
+    categories.forEach(
+        function(category) {
+            category.addEventListener(
                 "click",
-                () => {
-                    applyLanguage(
-                        button.dataset.language
-                    );
-                }
-            );
-        });
-    document
-        .querySelectorAll(
-            ".category"
-        )
-        .forEach(button => {
-            button.addEventListener(
-                "click",
-                () => {
-                    document
-                        .querySelectorAll(
-                            ".category"
-                        )
-                        .forEach(item => {
+                function() {
+                    categories.forEach(
+                        function(item) {
                             item.classList.remove(
                                 "active"
                             );
-                        });
-                    button.classList.add(
+                        }
+                    );
+                    category.classList.add(
                         "active"
                     );
                     selectedCategory =
-                        button.dataset.category;
+                        category
+                            .dataset
+                            .category;
                     renderBusinesses();
                 }
             );
-        });
-    document
-        .getElementById(
-            "searchInput"
-        )
-        .addEventListener(
-            "input",
-            renderBusinesses
-        );
-    applyLanguage(
-        currentLanguage
+        }
+    );
+    searchInput.addEventListener(
+        "input",
+        function() {
+            renderBusinesses();
+        }
     );
     loadBusinesses();
 </script>
