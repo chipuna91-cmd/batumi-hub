@@ -12,44 +12,71 @@
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            background: #f5f7fb;
-            color: #1f2937;
+            background: #f5f5f5;
+            color: #222;
         }
         header {
-            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            background: white;
+            padding: 20px 16px 14px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #222;
+        }
+        .subtitle {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #777;
+        }
+        .languages {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .language-btn {
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 8px;
+            padding: 7px 9px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .language-btn.active {
+            background: #222;
             color: white;
-            padding: 28px 20px 32px;
-            text-align: center;
-        }
-        header h1 {
-            font-size: 30px;
-            margin-bottom: 8px;
-        }
-        header p {
-            font-size: 15px;
-            opacity: 0.9;
+            border-color: #222;
         }
         .container {
             width: 100%;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 20px 16px 40px;
         }
         .search-box {
-            margin-bottom: 24px;
+            margin-bottom: 22px;
         }
         .search-box input {
             width: 100%;
-            padding: 15px 18px;
-            border: 1px solid #d1d5db;
-            border-radius: 14px;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            background: white;
             font-size: 16px;
             outline: none;
-            background: white;
         }
         .search-box input:focus {
-            border-color: #4f46e5;
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+            border-color: #777;
         }
         .section-title {
             font-size: 21px;
@@ -59,55 +86,54 @@
         .categories {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 30px;
+            gap: 10px;
+            margin-bottom: 28px;
         }
         .category {
             background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
-            padding: 18px 12px;
+            border: 1px solid #e1e1e1;
+            border-radius: 14px;
+            padding: 17px 10px;
             text-align: center;
             cursor: pointer;
             transition: 0.2s;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+            user-select: none;
         }
-        .category:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 7px 18px rgba(0,0,0,0.08);
+        .category:active {
+            transform: scale(0.98);
         }
         .category.active {
-            background: #eef2ff;
-            border-color: #4f46e5;
-            color: #3730a3;
+            border-color: #222;
+            background: #f0f0f0;
         }
         .category-icon {
-            font-size: 30px;
-            margin-bottom: 8px;
+            font-size: 28px;
+            margin-bottom: 7px;
         }
         .category-name {
             font-size: 14px;
             font-weight: 600;
         }
-        .businesses-section {
-            margin-top: 10px;
+        .result-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .result-count {
+            color: #777;
+            font-size: 13px;
         }
         .businesses-list {
             display: grid;
-            gap: 16px;
+            gap: 14px;
         }
         .business-card {
             background: white;
-            border-radius: 18px;
+            border: 1px solid #e2e2e2;
+            border-radius: 15px;
             overflow: hidden;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .business-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.09);
         }
         .business-image {
             width: 100%;
@@ -118,56 +144,65 @@
         .business-image-placeholder {
             width: 100%;
             height: 190px;
+            background: #eeeeee;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #eef2f7;
-            font-size: 50px;
+            font-size: 48px;
         }
         .business-content {
-            padding: 18px;
+            padding: 16px;
         }
-        .business-content h3 {
-            font-size: 20px;
-            margin-bottom: 8px;
+        .business-name {
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 7px;
         }
         .business-description {
-            color: #6b7280;
+            color: #666;
             font-size: 14px;
             line-height: 1.5;
-            margin-bottom: 10px;
+            margin-bottom: 9px;
         }
         .business-info {
+            color: #555;
             font-size: 14px;
-            color: #4b5563;
-            margin-top: 7px;
+            margin-top: 6px;
         }
-        .business-link {
-            margin-top: 14px;
-            color: #4f46e5;
+        .details-button {
+            display: inline-block;
+            margin-top: 13px;
+            padding: 9px 13px;
+            border-radius: 9px;
+            background: #222;
+            color: white;
+            font-size: 13px;
             font-weight: 600;
-            font-size: 14px;
         }
         .status {
+            background: white;
+            border: 1px solid #e2e2e2;
+            border-radius: 14px;
+            padding: 25px 18px;
             text-align: center;
-            padding: 25px 10px;
-            color: #6b7280;
+            color: #777;
         }
         .error {
-            background: #fee2e2;
-            color: #991b1b;
-            padding: 15px;
+            background: #fff0f0;
+            color: #b42318;
+            border: 1px solid #f3c0c0;
             border-radius: 12px;
-            margin-bottom: 20px;
+            padding: 15px;
             line-height: 1.5;
+            margin-bottom: 15px;
         }
         .empty {
             background: white;
-            border-radius: 16px;
-            padding: 30px 20px;
+            border: 1px solid #e2e2e2;
+            border-radius: 14px;
+            padding: 25px 18px;
             text-align: center;
-            color: #6b7280;
-            border: 1px solid #e5e7eb;
+            color: #777;
         }
         @media (min-width: 600px) {
             .categories {
@@ -186,18 +221,29 @@
 </head>
 <body>
 <header>
-    <h1>Batumi Hub</h1>
-    <p>Все услуги Батуми в одном месте</p>
+    <div class="header-top">
+        <div>
+            <div class="logo">Batumi Hub</div>
+            <div class="subtitle" id="subtitle">
+                Все услуги Батуми в одном месте
+            </div>
+        </div>
+        <div class="languages">
+            <button class="language-btn active" data-lang="ka">ქართული</button>
+            <button class="language-btn" data-lang="ru">Русский</button>
+            <button class="language-btn" data-lang="en">English</button>
+        </div>
+    </div>
 </header>
 <div class="container">
     <div class="search-box">
         <input
             type="text"
             id="search"
-            placeholder="Поиск бизнеса..."
+            placeholder="Поиск..."
         >
     </div>
-    <div class="section-title">
+    <div class="section-title" id="categories-title">
         Категории
     </div>
     <div class="categories">
@@ -250,30 +296,45 @@
             <div class="category-name">Языковые школы</div>
         </div>
     </div>
-    <div class="businesses-section">
+    <div class="result-header">
         <div class="section-title" id="businesses-title">
             Бизнесы
         </div>
-        <div id="message"></div>
-        <div
-            class="businesses-list"
-            id="businesses-list"
-        ></div>
+        <div class="result-count" id="result-count"></div>
+    </div>
+    <div id="message"></div>
+    <div
+        class="businesses-list"
+        id="businesses-list"
+    >
+        <div class="status">
+            Выберите категорию
+        </div>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-    const SUPABASE_URL = "https://mzbweaovalklyojtdrmq.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_uaJkPRsPjlYnv-JPUU0UfA_EV9JEzmx";
-    const supabaseClient = window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-    const categories = document.querySelectorAll(".category");
-    const searchInput = document.getElementById("search");
-    const businessesList = document.getElementById("businesses-list");
-    const businessesTitle = document.getElementById("businesses-title");
-    const message = document.getElementById("message");
+    const SUPABASE_URL =
+        "https://mzbweaovalklyojtdrmq.supabase.co";
+    const SUPABASE_KEY =
+        "sb_publishable_uaJkPRsPjlYnv-JPUU0UfA_EV9JEzmx";
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+    const categories =
+        document.querySelectorAll(".category");
+    const searchInput =
+        document.getElementById("search");
+    const businessesList =
+        document.getElementById("businesses-list");
+    const businessesTitle =
+        document.getElementById("businesses-title");
+    const resultCount =
+        document.getElementById("result-count");
+    const message =
+        document.getElementById("message");
     let allBusinesses = [];
     let selectedCategory = null;
     const categoryNames = {
@@ -292,12 +353,15 @@
     };
     async function loadBusinesses() {
         businessesList.innerHTML =
-            '<div class="status">Загрузка бизнесов...</div>';
+            '<div class="status">Загрузка...</div>';
         message.innerHTML = "";
-        const { data, error } = await supabaseClient
-            .from("businesses")
-            .select("*")
-            .eq("status", "active");
+        const result =
+            await supabaseClient
+                .from("businesses")
+                .select("*")
+                .eq("status", "active");
+        const data = result.data;
+        const error = result.error;
         if (error) {
             console.error(error);
             businessesList.innerHTML = "";
@@ -321,37 +385,53 @@
             searchInput.value
                 .trim()
                 .toLowerCase();
-        let filtered = allBusinesses;
+        let filtered =
+            allBusinesses.slice();
         if (selectedCategory) {
-            filtered = filtered.filter(function(business) {
-                return business.category === selectedCategory;
-            });
+            filtered =
+                filtered.filter(function(business) {
+                    return (
+                        String(business.category || "")
+                            .trim()
+                            .toLowerCase()
+                        ===
+                        selectedCategory
+                    );
+                });
         }
         if (searchText) {
-            filtered = filtered.filter(function(business) {
-                const name =
-                    (business.name || "").toLowerCase();
-                const description =
-                    (business.description || "").toLowerCase();
-                const address =
-                    (business.address || "").toLowerCase();
-                const category =
-                    (business.category || "").toLowerCase();
-                return (
-                    name.includes(searchText) ||
-                    description.includes(searchText) ||
-                    address.includes(searchText) ||
-                    category.includes(searchText)
-                );
-            });
+            filtered =
+                filtered.filter(function(business) {
+                    const name =
+                        String(business.name || "")
+                            .toLowerCase();
+                    const description =
+                        String(business.description || "")
+                            .toLowerCase();
+                    const address =
+                        String(business.address || "")
+                            .toLowerCase();
+                    const category =
+                        String(business.category || "")
+                            .toLowerCase();
+                    return (
+                        name.includes(searchText) ||
+                        description.includes(searchText) ||
+                        address.includes(searchText) ||
+                        category.includes(searchText)
+                    );
+                });
         }
         if (selectedCategory) {
             businessesTitle.textContent =
-                categoryNames[selectedCategory] ||
-                selectedCategory;
+                categoryNames[selectedCategory]
+                || selectedCategory;
         } else {
-            businessesTitle.textContent = "Бизнесы";
+            businessesTitle.textContent =
+                "Бизнесы";
         }
+        resultCount.textContent =
+            filtered.length + " бизнес(ов)";
         if (filtered.length === 0) {
             businessesList.innerHTML = `
                 <div class="empty">
@@ -364,8 +444,9 @@
         filtered.forEach(function(business) {
             const card =
                 document.createElement("div");
-            card.className = "business-card";
-            let imageHTML = "";
+            card.className =
+                "business-card";
+            let imageHTML;
             if (business.image_url) {
                 imageHTML = `
                     <img
@@ -384,9 +465,9 @@
             card.innerHTML = `
                 ${imageHTML}
                 <div class="business-content">
-                    <h3>
+                    <div class="business-name">
                         ${business.name || "Без названия"}
-                    </h3>
+                    </div>
                     ${
                         business.description
                         ? `
@@ -414,35 +495,37 @@
                         `
                         : ""
                     }
-                    <div class="business-link">
+                    <div class="details-button">
                         Подробнее →
                     </div>
                 </div>
             `;
-            card.addEventListener("click", function() {
-                alert(
-                    "Страница бизнеса будет открыта на следующем этапе."
-                );
-            });
             businessesList.appendChild(card);
         });
     }
     categories.forEach(function(category) {
-        category.addEventListener("click", function() {
-            categories.forEach(function(item) {
-                item.classList.remove("active");
-            });
-            category.classList.add("active");
-            selectedCategory =
-                category.dataset.category;
-            searchInput.value = "";
-            renderBusinesses();
-            document.querySelector(
-                ".businesses-section"
-            ).scrollIntoView({
-                behavior: "smooth"
-            });
-        });
+        category.addEventListener(
+            "click",
+            function() {
+                categories.forEach(
+                    function(item) {
+                        item.classList.remove("active");
+                    }
+                );
+                category.classList.add("active");
+                selectedCategory =
+                    category
+                        .getAttribute("data-category");
+                searchInput.value = "";
+                renderBusinesses();
+                document
+                    .querySelector(".businesses-list")
+                    .scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+            }
+        );
     });
     searchInput.addEventListener(
         "input",
@@ -450,6 +533,21 @@
             renderBusinesses();
         }
     );
+    document
+        .querySelectorAll(".language-btn")
+        .forEach(function(button) {
+            button.addEventListener(
+                "click",
+                function() {
+                    document
+                        .querySelectorAll(".language-btn")
+                        .forEach(function(item) {
+                            item.classList.remove("active");
+                        });
+                    button.classList.add("active");
+                }
+            );
+        });
     loadBusinesses();
 </script>
 </body>
