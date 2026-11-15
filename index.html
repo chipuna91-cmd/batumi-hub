@@ -308,6 +308,22 @@ const supabase = window.supabase.createClient(
         </p>
     </div>
 </footer>
+<script>
+async function testSupabase() {
+    const { data, error } = await supabase
+        .from("businesses")
+        .select("*");
+
+    if (error) {
+        console.error("Supabase error:", error);
+        return;
+    }
+
+    console.log("Businesses:", data);
+}
+
+testSupabase();
+</script>
 
 </body>
 </html>
