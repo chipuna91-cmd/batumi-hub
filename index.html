@@ -106,7 +106,7 @@
             color: #6b7280;
         }
         #businesses-list {
-            margin-bottom: 25px;
+            margin-top: 35px;
         }
         .business-card {
             background: #ffffff;
@@ -198,7 +198,6 @@
             <h2 class="section-title">
                 Категории
             </h2>
-            <div id="businesses-list"></div>
             <div class="categories">
                 <div class="category" data-category="apartments">
                     <div class="icon">🏠</div>
@@ -261,6 +260,7 @@
                     <p>Языки и обучение</p>
                 </div>
             </div>
+            <div id="businesses-list"></div>
         </div>
     </section>
 </main>
@@ -281,14 +281,17 @@
             .select("*")
             .eq("status", "active");
         if (error) {
-            console.error("Ошибка загрузки бизнесов:", error);
+            console.error(
+                "Ошибка загрузки бизнесов:",
+                error
+            );
             return;
         }
         allBusinesses = data || [];
-        renderBusinesses(allBusinesses);
     }
     function renderBusinesses(businesses) {
-        const container = document.getElementById("businesses-list");
+        const container =
+            document.getElementById("businesses-list");
         container.innerHTML = "";
         if (businesses.length === 0) {
             container.innerHTML = `
@@ -299,57 +302,93 @@
             return;
         }
         businesses.forEach(business => {
-            const card = document.createElement("div");
-            card.className = "business-card";
+            const card =
+                document.createElement("div");
+            card.className =
+                "business-card";
             card.innerHTML = `
                 <h3>${business.name}</h3>
-                <p>${business.description || ""}</p>
-                <p>${business.address || ""}</p>
-                <p>${business.phone || ""}</p>
+                <p>
+                    ${business.description || ""}
+                </p>
+                <p>
+                    ${business.address || ""}
+                </p>
+                <p>
+                    ${business.phone || ""}
+                </p>
             `;
             container.appendChild(card);
         });
     }
-    document.querySelectorAll(".category").forEach(category => {
-        category.addEventListener("click", function() {
-            const categoryName = this.dataset.category;
-            document.querySelectorAll(".category").forEach(item => {
-                item.classList.remove("active");
-            });
-            this.classList.add("active");
-            selectedCategory = categoryName;
-            const filteredBusinesses = allBusinesses.filter(
-                business => business.category === categoryName
+    document
+        .querySelectorAll(".category")
+        .forEach(category => {
+            category.addEventListener(
+                "click",
+                function() {
+                    const categoryName =
+                        this.dataset.category;
+                    document
+                        .querySelectorAll(".category")
+                        .forEach(item => {
+                            item.classList.remove("active");
+                        });
+                    this.classList.add("active");
+                    selectedCategory =
+                        categoryName;
+                    const filteredBusinesses =
+                        allBusinesses.filter(
+                            business =>
+                                business.category ===
+                                categoryName
+                        );
+                    renderBusinesses(
+                        filteredBusinesses
+                    );
+                }
             );
-            renderBusinesses(filteredBusinesses);
-            document.getElementById("businesses-list")
-                .scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
         });
-    });
-    document.getElementById("search").addEventListener("input", function() {
-        const searchText = this.value.toLowerCase().trim();
-        let filteredBusinesses = allBusinesses;
-        if (selectedCategory) {
-            filteredBusinesses = filteredBusinesses.filter(
-                business => business.category === selectedCategory
-            );
-        }
-        if (searchText) {
-            filteredBusinesses = filteredBusinesses.filter(business => {
-                const text = `
-                    ${business.name || ""}
-                    ${business.description || ""}
-                    ${business.address || ""}
-                    ${business.category || ""}
-                `.toLowerCase();
-                return text.includes(searchText);
-            });
-        }
-        renderBusinesses(filteredBusinesses);
-    });
+    document
+        .getElementById("search")
+        .addEventListener(
+            "input",
+            function() {
+                const searchText =
+                    this.value
+                        .toLowerCase()
+                        .trim();
+                let filteredBusinesses =
+                    allBusinesses;
+                if (selectedCategory) {
+                    filteredBusinesses =
+                        filteredBusinesses.filter(
+                            business =>
+                                business.category ===
+                                selectedCategory
+                        );
+                }
+                if (searchText) {
+                    filteredBusinesses =
+                        filteredBusinesses.filter(
+                            business => {
+                                const text = `
+                                    ${business.name || ""}
+                                    ${business.description || ""}
+                                    ${business.address || ""}
+                                    ${business.category || ""}
+                                `.toLowerCase();
+                                return text.includes(
+                                    searchText
+                                );
+                            }
+                        );
+                }
+                renderBusinesses(
+                    filteredBusinesses
+                );
+            }
+        );
     loadBusinesses();
 </script>
 </body>
