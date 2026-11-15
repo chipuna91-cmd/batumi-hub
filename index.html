@@ -166,13 +166,20 @@
     </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL = "https://mzbweaovalklyojtdrmq.supabase.co/rest/v1/";
-const SUPABASE_KEY = "sb_publishable_uaJkPRsPjlYnv-JPUU0UfA_EV9JEzmx";
+async function testSupabase() {
+    const { data, error } = await supabase
+        .from("businesses")
+        .select("*");
 
-const supabase = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+    if (error) {
+        alert("Ошибка Supabase: " + error.message);
+        return;
+    }
+
+    alert("Supabase работает! Бизнесов найдено: " + data.length);
+}
+
+testSupabase();
 </script>
 </head>
 
