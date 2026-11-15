@@ -72,25 +72,32 @@
             font-size: 15px;
             opacity: 0.92;
         }
-        <!-- ЗАМЕНИ ТОЛЬКО ЭТОТ БЛОК -->
-
-<div class="languages">
-
-    <button class="language-button" title="ქართული">
-        🇬🇪
-    </button>
-
-    <button class="language-button" title="Русский">
-        🇷🇺
-    </button>
-
-    <button class="language-button" title="English">
-        🇬🇧
-    </button>
-
-</div>
+        .languages {
+            display: flex;
+            gap: 8px;
+            margin-top: 18px;
+        }
+        .language-button {
+            border: 1px solid rgba(255,255,255,0.45);
+            background: rgba(255,255,255,0.16);
+            color: white;
+            width: 42px;
+            height: 36px;
+            padding: 0;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
+        }
         .language-button:hover {
-            background: rgba(255,255,255,0.28);
+            background: rgba(255,255,255,0.30);
+            transform: translateY(-2px);
         }
         .search-container {
             max-width: 1100px;
@@ -310,14 +317,26 @@
             Все услуги Батуми в одном месте
         </div>
         <div class="languages">
-            <button class="language-button">
-                ქართული
+            <button
+                class="language-button"
+                title="ქართული"
+                aria-label="ქართული"
+            >
+                🇬🇪
             </button>
-            <button class="language-button">
-                Русский
+            <button
+                class="language-button"
+                title="Русский"
+                aria-label="Русский"
+            >
+                🇷🇺
             </button>
-            <button class="language-button">
-                English
+            <button
+                class="language-button"
+                title="English"
+                aria-label="English"
+            >
+                🇬🇧
             </button>
         </div>
         <div class="search-container">
