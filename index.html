@@ -79,6 +79,25 @@
             font-size: 26px;
             margin-bottom: 22px;
         }
+        #businesses-list {
+            margin-bottom: 25px;
+        }
+        .business-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        .business-card h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        .business-card p {
+            color: #6b7280;
+            font-size: 14px;
+            margin-top: 5px;
+        }
         .categories {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -180,6 +199,7 @@
             <h2 class="section-title">
                 Категории
             </h2>
+            <!-- Бизнесы из Supabase -->
             <div id="businesses-list"></div>
             <div class="categories">
                 <div class="category">
@@ -254,8 +274,31 @@
         </p>
     </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
+<script>
+    async function loadBusinesses() {
+        const { data, error } = await supabaseClient
+            .from("businesses")
+            .select("*")
+            .eq("status", "active");
+        if (error) {
+            console.error("Ошибка загрузки бизнесов:", error);
+            return;
+        }
+        const container = document.getElementById("businesses-list");
+        container.innerHTML = "";
+        data.forEach(business => {
+            const card = document.createElement("div");
+            card.className = "business-card";
+            card.innerHTML = `
+                <h3>${business.name}</h3>
+                <p>${business.description || ""}</p>
+                <p>${business.address || ""}</p>
+                <p>${business.phone || ""}</p>
+            `;
+            container.appendChild(card);
+        });
+    }
+    loadBusinesses();
+</script>
 </body>
 </html>
