@@ -72,7 +72,6 @@
             font-size: 15px;
             opacity: 0.92;
         }
-        /* ТОЛЬКО ФЛАГИ */
         .languages {
             display: flex;
             align-items: center;
@@ -315,7 +314,7 @@
         <div class="logo">
             Batumi Hub
         </div>
-        <div class="subtitle">
+        <div class="subtitle" id="subtitle">
             Все услуги Батуми в одном месте
         </div>
         <div class="languages">
@@ -324,6 +323,7 @@
                 class="language-button"
                 title="ქართული"
                 aria-label="ქართული"
+                data-language="ka"
             >
                 <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
                     <rect width="280" height="180" fill="#ffffff"/>
@@ -346,6 +346,7 @@
                 class="language-button"
                 title="Русский"
                 aria-label="Русский"
+                data-language="ru"
             >
                 <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
                     <rect width="280" height="60" fill="#ffffff"/>
@@ -358,6 +359,7 @@
                 class="language-button"
                 title="English"
                 aria-label="English"
+                data-language="en"
             >
                 <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
                     <rect width="280" height="180" fill="#012169"/>
@@ -417,44 +419,44 @@
 <main>
     <div class="categories">
         <div class="category" data-category="apartments">
-            🏠 Апартаменты
+            🏠 <span data-i18n="apartments">Апартаменты</span>
         </div>
         <div class="category" data-category="car_rental">
-            🚗 Аренда авто
+            🚗 <span data-i18n="car_rental">Аренда авто</span>
         </div>
         <div class="category" data-category="transfers">
-            🚕 Трансферы
+            🚕 <span data-i18n="transfers">Трансферы</span>
         </div>
         <div class="category" data-category="excursions">
-            🗺️ Экскурсии
+            🗺️ <span data-i18n="excursions">Экскурсии</span>
         </div>
         <div class="category" data-category="restaurants">
-            🍽️ Рестораны
+            🍽️ <span data-i18n="restaurants">Рестораны</span>
         </div>
         <div class="category" data-category="salons">
-            💇 Салоны
+            💇 <span data-i18n="salons">Салоны</span>
         </div>
         <div class="category" data-category="barbershops">
-            💈 Барбершопы
+            💈 <span data-i18n="barbershops">Барбершопы</span>
         </div>
         <div class="category" data-category="psychology">
-            🧠 Психология
+            🧠 <span data-i18n="psychology">Психология</span>
         </div>
         <div class="category" data-category="dentistry">
-            🦷 Стоматология
+            🦷 <span data-i18n="dentistry">Стоматология</span>
         </div>
         <div class="category" data-category="cosmetology">
-            💄 Косметология
+            💄 <span data-i18n="cosmetology">Косметология</span>
         </div>
         <div class="category" data-category="fitness">
-            🏋️ Фитнес
+            🏋️ <span data-i18n="fitness">Фитнес</span>
         </div>
         <div class="category" data-category="language_schools">
-            📚 Языковые школы
+            📚 <span data-i18n="language_schools">Языковые школы</span>
         </div>
     </div>
     <div class="results-section">
-        <div class="results-title">
+        <div class="results-title" id="resultsTitle">
             Бизнесы
         </div>
         <div
@@ -486,12 +488,222 @@
         document.querySelectorAll(
             ".category"
         );
+    const languageButtons =
+        document.querySelectorAll(
+            ".language-button"
+        );
+    const subtitle =
+        document.getElementById(
+            "subtitle"
+        );
+    const resultsTitle =
+        document.getElementById(
+            "resultsTitle"
+        );
     let allBusinesses = [];
     let selectedCategory = "";
+    let currentLanguage = "ru";
+    /* =========================
+       ПЕРЕВОДЫ
+       ========================= */
+    const translations = {
+        ru: {
+            subtitle:
+                "Все услуги Батуми в одном месте",
+            searchPlaceholder:
+                "Поиск бизнеса или услуги...",
+            businesses:
+                "Бизнесы",
+            loading:
+                "Загружаем бизнесы...",
+            error:
+                "Ошибка загрузки бизнесов",
+            empty:
+                "Пока здесь нет добавленных бизнесов.",
+            details:
+                "Подробнее →",
+            noName:
+                "Без названия",
+            categories: {
+                apartments:
+                    "Апартаменты",
+                car_rental:
+                    "Аренда авто",
+                transfers:
+                    "Трансферы",
+                excursions:
+                    "Экскурсии",
+                restaurants:
+                    "Рестораны",
+                salons:
+                    "Салоны",
+                barbershops:
+                    "Барбершопы",
+                psychology:
+                    "Психология",
+                dentistry:
+                    "Стоматология",
+                cosmetology:
+                    "Косметология",
+                fitness:
+                    "Фитнес",
+                language_schools:
+                    "Языковые школы"
+            }
+        },
+        ka: {
+            subtitle:
+                "ბათუმის ყველა სერვისი ერთ ადგილას",
+            searchPlaceholder:
+                "მოძებნეთ ბიზნესი ან სერვისი...",
+            businesses:
+                "ბიზნესები",
+            loading:
+                "ბიზნესები იტვირთება...",
+            error:
+                "ბიზნესების ჩატვირთვის შეცდომა",
+            empty:
+                "აქ ჯერ დამატებული ბიზნესი არ არის.",
+            details:
+                "დეტალურად →",
+            noName:
+                "სახელის გარეშე",
+            categories: {
+                apartments:
+                    "აპარტამენტები",
+                car_rental:
+                    "მანქანის ქირაობა",
+                transfers:
+                    "ტრანსფერები",
+                excursions:
+                    "ექსკურსიები",
+                restaurants:
+                    "რესტორნები",
+                salons:
+                    "სალონები",
+                barbershops:
+                    "ბარბერშოპები",
+                psychology:
+                    "ფსიქოლოგია",
+                dentistry:
+                    "სტომატოლოგია",
+                cosmetology:
+                    "კოსმეტოლოგია",
+                fitness:
+                    "ფიტნესი",
+                language_schools:
+                    "ენის სკოლები"
+            }
+        },
+        en: {
+            subtitle:
+                "All Batumi services in one place",
+            searchPlaceholder:
+                "Search for a business or service...",
+            businesses:
+                "Businesses",
+            loading:
+                "Loading businesses...",
+            error:
+                "Error loading businesses",
+            empty:
+                "There are no businesses added here yet.",
+            details:
+                "Details →",
+            noName:
+                "No name",
+            categories: {
+                apartments:
+                    "Apartments",
+                car_rental:
+                    "Car Rental",
+                transfers:
+                    "Transfers",
+                excursions:
+                    "Excursions",
+                restaurants:
+                    "Restaurants",
+                salons:
+                    "Salons",
+                barbershops:
+                    "Barbershops",
+                psychology:
+                    "Psychology",
+                dentistry:
+                    "Dentistry",
+                cosmetology:
+                    "Cosmetology",
+                fitness:
+                    "Fitness",
+                language_schools:
+                    "Language Schools"
+            }
+        }
+    };
+    /* =========================
+       СМЕНА ЯЗЫКА
+       ========================= */
+    function changeLanguage(language) {
+        currentLanguage = language;
+        const t =
+            translations[language];
+        subtitle.textContent =
+            t.subtitle;
+        resultsTitle.textContent =
+            t.businesses;
+        searchInput.placeholder =
+            t.searchPlaceholder;
+        document.documentElement.lang =
+            language === "ka"
+                ? "ka"
+                : language;
+        categories.forEach(
+            function(category) {
+                const key =
+                    category.dataset.category;
+                const text =
+                    category.querySelector(
+                        "[data-i18n]"
+                    );
+                if (text && t.categories[key]) {
+                    text.textContent =
+                        t.categories[key];
+                }
+            }
+        );
+        languageButtons.forEach(
+            function(button) {
+                const buttonLanguage =
+                    button.dataset.language;
+                button.style.opacity =
+                    buttonLanguage === language
+                        ? "1"
+                        : "0.75";
+            }
+        );
+        renderBusinesses();
+    }
+    languageButtons.forEach(
+        function(button) {
+            button.addEventListener(
+                "click",
+                function() {
+                    const language =
+                        button.dataset.language;
+                    changeLanguage(
+                        language
+                    );
+                }
+            );
+        }
+    );
+    /* =========================
+       ЗАГРУЗКА БИЗНЕСОВ
+       ========================= */
     async function loadBusinesses() {
         businessesList.innerHTML = `
             <div class="loading">
-                Загружаем бизнесы...
+                ${translations[currentLanguage].loading}
             </div>
         `;
         const result =
@@ -502,7 +714,7 @@
         if (result.error) {
             businessesList.innerHTML = `
                 <div class="empty-state">
-                    Ошибка загрузки бизнесов
+                    ${translations[currentLanguage].error}
                 </div>
             `;
             console.error(result.error);
@@ -512,7 +724,12 @@
             result.data || [];
         renderBusinesses();
     }
+    /* =========================
+       ОТОБРАЖЕНИЕ БИЗНЕСОВ
+       ========================= */
     function renderBusinesses() {
+        const t =
+            translations[currentLanguage];
         const searchText =
             searchInput.value
                 .trim()
@@ -561,7 +778,7 @@
         if (filtered.length === 0) {
             businessesList.innerHTML = `
                 <div class="empty-state">
-                    Пока здесь нет добавленных бизнесов.
+                    ${t.empty}
                 </div>
             `;
             return;
@@ -580,7 +797,7 @@
                         <img
                             class="business-image"
                             src="${business.image_url}"
-                            alt="${business.name || "Business"}"
+                            alt="${business.name || t.noName}"
                         >
                     `;
                 } else {
@@ -594,7 +811,7 @@
                     ${imageHTML}
                     <div class="business-content">
                         <div class="business-name">
-                            ${business.name || "Без названия"}
+                            ${business.name || t.noName}
                         </div>
                         ${
                             business.description
@@ -624,7 +841,7 @@
                             : ""
                         }
                         <div class="details-button">
-                            Подробнее →
+                            ${t.details}
                         </div>
                     </div>
                 `;
@@ -634,6 +851,9 @@
             }
         );
     }
+    /* =========================
+       КАТЕГОРИИ
+       ========================= */
     categories.forEach(
         function(category) {
             category.addEventListener(
@@ -658,12 +878,19 @@
             );
         }
     );
+    /* =========================
+       ПОИСК
+       ========================= */
     searchInput.addEventListener(
         "input",
         function() {
             renderBusinesses();
         }
     );
+    /* =========================
+       ЗАПУСК
+       ========================= */
+    changeLanguage("ru");
     loadBusinesses();
 </script>
 </body>
