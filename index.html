@@ -111,18 +111,56 @@
         .business-card {
             background: #ffffff;
             border: 1px solid #e5e7eb;
-            border-radius: 18px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 18px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .business-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        }
+        .business-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            background: #e5e7eb;
+        }
+        .business-image-placeholder {
+            width: 100%;
+            height: 180px;
+            background: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+        }
+        .business-content {
             padding: 20px;
-            margin-bottom: 16px;
         }
         .business-card h3 {
-            font-size: 20px;
+            font-size: 22px;
             margin-bottom: 8px;
         }
-        .business-card p {
+        .business-description {
             color: #6b7280;
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+        .business-info {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            color: #4b5563;
             font-size: 14px;
-            margin-top: 5px;
+        }
+        .business-open {
+            margin-top: 16px;
+            font-size: 14px;
+            font-weight: 600;
         }
         .empty {
             background: #ffffff;
@@ -130,6 +168,10 @@
             padding: 25px;
             color: #6b7280;
             margin-bottom: 25px;
+        }
+        .selected-title {
+            font-size: 22px;
+            margin-bottom: 15px;
         }
         footer {
             background: #111827;
@@ -153,6 +195,9 @@
             .hero {
                 padding-top: 38px;
             }
+            .business-image {
+                height: 190px;
+            }
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -168,7 +213,9 @@
 <body>
 <header>
     <div class="container header-inner">
-        <div class="logo">BATUMI HUB</div>
+        <div class="logo">
+            BATUMI HUB
+        </div>
         <button class="language">
             RU
         </button>
@@ -301,23 +348,68 @@
             `;
             return;
         }
+        const title = document.createElement("div");
+        title.className = "selected-title";
+        title.textContent =
+            selectedCategory
+                ? "Доступные бизнесы"
+                : "Все бизнесы";
+        container.appendChild(title);
         businesses.forEach(business => {
             const card =
                 document.createElement("div");
             card.className =
                 "business-card";
+            let imageBlock = "";
+            if (business.image_url) {
+                imageBlock = `
+                    <img
+                        class="business-image"
+                        src="${business.image_url}"
+                        alt="${business.name || "Business"}"
+                    >
+                `;
+            } else {
+                imageBlock = `
+                    <div class="business-image-placeholder">
+                        🏢
+                    </div>
+                `;
+            }
             card.innerHTML = `
-                <h3>${business.name}</h3>
-                <p>
-                    ${business.description || ""}
-                </p>
-                <p>
-                    ${business.address || ""}
-                </p>
-                <p>
-                    ${business.phone || ""}
-                </p>
+                ${imageBlock}
+                <div class="business-content">
+                    <h3>
+                        ${business.name || "Без названия"}
+                    </h3>
+                    <div class="business-description">
+                        ${business.description || "Описание пока не добавлено."}
+                    </div>
+                    <div class="business-info">
+                        ${
+                            business.address
+                                ? `<div>📍 ${business.address}</div>`
+                                : ""
+                        }
+                        ${
+                            business.phone
+                                ? `<div>📞 ${business.phone}</div>`
+                                : ""
+                        }
+                    </div>
+                    <div class="business-open">
+                        Подробнее →
+                    </div>
+                </div>
             `;
+            card.addEventListener(
+                "click",
+                function() {
+                    alert(
+                        "Страница бизнеса будет открыта на следующем этапе."
+                    );
+                }
+            );
             container.appendChild(card);
         });
     }
