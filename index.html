@@ -11,358 +11,363 @@
             padding: 0;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-            background: #f5f6f8;
-            color: #111827;
-        }
-        .container {
-            width: min(1100px, 92%);
-            margin: 0 auto;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
         }
         header {
-            background: #ffffff;
-            padding: 22px 0;
-            border-bottom: 1px solid #e5e7eb;
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            color: white;
+            padding: 28px 20px 32px;
+            text-align: center;
         }
-        .header-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        header h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
         }
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
+        header p {
+            font-size: 15px;
+            opacity: 0.9;
         }
-        .language {
-            border: none;
-            background: #f1f3f5;
-            padding: 9px 13px;
-            border-radius: 10px;
-            font-size: 14px;
-        }
-        .hero {
-            padding: 55px 0 35px;
-        }
-        .hero h1 {
-            font-size: clamp(34px, 6vw, 58px);
-            line-height: 1.05;
-            max-width: 750px;
-            margin-bottom: 18px;
-        }
-        .hero p {
-            font-size: 18px;
-            color: #6b7280;
-            max-width: 650px;
-            line-height: 1.6;
-            margin-bottom: 28px;
-        }
-        .search {
+        .container {
             width: 100%;
-            max-width: 700px;
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
-            padding: 16px 18px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .search-box {
+            margin-bottom: 24px;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 15px 18px;
+            border: 1px solid #d1d5db;
+            border-radius: 14px;
             font-size: 16px;
             outline: none;
+            background: white;
         }
-        .section {
-            padding: 25px 0 60px;
+        .search-box input:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
         }
         .section-title {
-            font-size: 26px;
-            margin-bottom: 22px;
+            font-size: 21px;
+            font-weight: 700;
+            margin-bottom: 14px;
         }
         .categories {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
         }
         .category {
-            background: #ffffff;
+            background: white;
             border: 1px solid #e5e7eb;
-            border-radius: 18px;
-            padding: 24px 18px;
+            border-radius: 16px;
+            padding: 18px 12px;
+            text-align: center;
             cursor: pointer;
             transition: 0.2s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.04);
         }
         .category:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            transform: translateY(-2px);
+            box-shadow: 0 7px 18px rgba(0,0,0,0.08);
         }
         .category.active {
-            border: 2px solid #111827;
+            background: #eef2ff;
+            border-color: #4f46e5;
+            color: #3730a3;
         }
-        .icon {
-            font-size: 34px;
-            margin-bottom: 14px;
+        .category-icon {
+            font-size: 30px;
+            margin-bottom: 8px;
         }
-        .category h3 {
-            font-size: 17px;
-            margin-bottom: 6px;
+        .category-name {
+            font-size: 14px;
+            font-weight: 600;
         }
-        .category p {
-            font-size: 13px;
-            color: #6b7280;
+        .businesses-section {
+            margin-top: 10px;
         }
-        #businesses-list {
-            margin-top: 35px;
+        .businesses-list {
+            display: grid;
+            gap: 16px;
         }
         .business-card {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 20px;
+            background: white;
+            border-radius: 18px;
             overflow: hidden;
-            margin-bottom: 18px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.06);
             cursor: pointer;
             transition: 0.2s;
         }
         .business-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.09);
         }
         .business-image {
             width: 100%;
-            height: 220px;
+            height: 190px;
             object-fit: cover;
             display: block;
-            background: #e5e7eb;
         }
         .business-image-placeholder {
             width: 100%;
-            height: 180px;
-            background: #e5e7eb;
+            height: 190px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 55px;
+            background: #eef2f7;
+            font-size: 50px;
         }
         .business-content {
-            padding: 20px;
+            padding: 18px;
         }
-        .business-card h3 {
-            font-size: 22px;
+        .business-content h3 {
+            font-size: 20px;
             margin-bottom: 8px;
         }
         .business-description {
             color: #6b7280;
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.5;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
         }
         .business-info {
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
+            font-size: 14px;
             color: #4b5563;
+            margin-top: 7px;
+        }
+        .business-link {
+            margin-top: 14px;
+            color: #4f46e5;
+            font-weight: 600;
             font-size: 14px;
         }
-        .business-open {
-            margin-top: 16px;
-            font-size: 14px;
-            font-weight: 600;
+        .status {
+            text-align: center;
+            padding: 25px 10px;
+            color: #6b7280;
+        }
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            line-height: 1.5;
         }
         .empty {
-            background: #ffffff;
-            border-radius: 18px;
-            padding: 25px;
+            background: white;
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
             color: #6b7280;
-            margin-bottom: 25px;
+            border: 1px solid #e5e7eb;
         }
-        .selected-title {
-            font-size: 22px;
-            margin-bottom: 15px;
-        }
-        footer {
-            background: #111827;
-            color: #ffffff;
-            padding: 30px 0;
-        }
-        footer p {
-            color: #9ca3af;
-            margin-top: 8px;
-            font-size: 14px;
-        }
-        @media (max-width: 800px) {
+        @media (min-width: 600px) {
             .categories {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (min-width: 900px) {
+            .categories {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .businesses-list {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
-        @media (max-width: 500px) {
-            .categories {
-                grid-template-columns: 1fr;
-            }
-            .hero {
-                padding-top: 38px;
-            }
-            .business-image {
-                height: 190px;
-            }
-        }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script>
-        const SUPABASE_URL = "https://mzbweaovalklyojtdrmq.supabase.co";
-        const SUPABASE_KEY = "sb_publishable_uaJkPRsPjlYnv-JPUU0UfA_EV9JEzmx";
-        const supabaseClient = window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
-        );
-    </script>
 </head>
 <body>
 <header>
-    <div class="container header-inner">
-        <div class="logo">
-            BATUMI HUB
-        </div>
-        <button class="language">
-            RU
-        </button>
-    </div>
+    <h1>Batumi Hub</h1>
+    <p>Все услуги Батуми в одном месте</p>
 </header>
-<main>
-    <section class="hero">
-        <div class="container">
-            <h1>
-                Всё необходимое<br>
-                в Батуми — в одном месте.
-            </h1>
-            <p>
-                Находите услуги, компании и развлечения,
-                сравнивайте предложения и записывайтесь онлайн.
-            </p>
-            <input
-                id="search"
-                class="search"
-                type="text"
-                placeholder="Что вы ищете?"
-            >
-        </div>
-    </section>
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">
-                Категории
-            </h2>
-            <div class="categories">
-                <div class="category" data-category="apartments">
-                    <div class="icon">🏠</div>
-                    <h3>Апартаменты</h3>
-                    <p>Жильё и размещение</p>
-                </div>
-                <div class="category" data-category="car_rental">
-                    <div class="icon">🚗</div>
-                    <h3>Аренда авто</h3>
-                    <p>Автомобили напрокат</p>
-                </div>
-                <div class="category" data-category="transfers">
-                    <div class="icon">🚕</div>
-                    <h3>Трансферы</h3>
-                    <p>Аэропорт и поездки</p>
-                </div>
-                <div class="category" data-category="excursions">
-                    <div class="icon">🚌</div>
-                    <h3>Экскурсии</h3>
-                    <p>Туры и развлечения</p>
-                </div>
-                <div class="category" data-category="restaurants">
-                    <div class="icon">🍽️</div>
-                    <h3>Рестораны</h3>
-                    <p>Еда и бронирование</p>
-                </div>
-                <div class="category" data-category="salons">
-                    <div class="icon">💇</div>
-                    <h3>Салоны</h3>
-                    <p>Красота и уход</p>
-                </div>
-                <div class="category" data-category="barbershops">
-                    <div class="icon">💈</div>
-                    <h3>Барбершопы</h3>
-                    <p>Мужские стрижки и уход</p>
-                </div>
-                <div class="category" data-category="psychology">
-                    <div class="icon">🧠</div>
-                    <h3>Психология</h3>
-                    <p>Психологи и консультации</p>
-                </div>
-                <div class="category" data-category="dentistry">
-                    <div class="icon">🦷</div>
-                    <h3>Стоматология</h3>
-                    <p>Стоматологи и клиники</p>
-                </div>
-                <div class="category" data-category="cosmetology">
-                    <div class="icon">💆</div>
-                    <h3>Косметология</h3>
-                    <p>Косметология и процедуры</p>
-                </div>
-                <div class="category" data-category="fitness">
-                    <div class="icon">🏋️</div>
-                    <h3>Фитнес</h3>
-                    <p>Спорт и тренировки</p>
-                </div>
-                <div class="category" data-category="language_schools">
-                    <div class="icon">🗣️</div>
-                    <h3>Языковые школы</h3>
-                    <p>Языки и обучение</p>
-                </div>
-            </div>
-            <div id="businesses-list"></div>
-        </div>
-    </section>
-</main>
-<footer>
-    <div class="container">
-        <strong>BATUMI HUB</strong>
-        <p>
-            Сервисы, бизнесы и услуги Батуми в одном месте.
-        </p>
+<div class="container">
+    <div class="search-box">
+        <input
+            type="text"
+            id="search"
+            placeholder="Поиск бизнеса..."
+        >
     </div>
-</footer>
+    <div class="section-title">
+        Категории
+    </div>
+    <div class="categories">
+        <div class="category" data-category="apartments">
+            <div class="category-icon">🏠</div>
+            <div class="category-name">Апартаменты</div>
+        </div>
+        <div class="category" data-category="car_rental">
+            <div class="category-icon">🚗</div>
+            <div class="category-name">Аренда авто</div>
+        </div>
+        <div class="category" data-category="transfers">
+            <div class="category-icon">🚕</div>
+            <div class="category-name">Трансферы</div>
+        </div>
+        <div class="category" data-category="excursions">
+            <div class="category-icon">🗺️</div>
+            <div class="category-name">Экскурсии</div>
+        </div>
+        <div class="category" data-category="restaurants">
+            <div class="category-icon">🍽️</div>
+            <div class="category-name">Рестораны</div>
+        </div>
+        <div class="category" data-category="salons">
+            <div class="category-icon">💇</div>
+            <div class="category-name">Салоны</div>
+        </div>
+        <div class="category" data-category="barbershops">
+            <div class="category-icon">💈</div>
+            <div class="category-name">Барбершопы</div>
+        </div>
+        <div class="category" data-category="psychology">
+            <div class="category-icon">🧠</div>
+            <div class="category-name">Психология</div>
+        </div>
+        <div class="category" data-category="dentistry">
+            <div class="category-icon">🦷</div>
+            <div class="category-name">Стоматология</div>
+        </div>
+        <div class="category" data-category="cosmetology">
+            <div class="category-icon">💄</div>
+            <div class="category-name">Косметология</div>
+        </div>
+        <div class="category" data-category="fitness">
+            <div class="category-icon">🏋️</div>
+            <div class="category-name">Фитнес</div>
+        </div>
+        <div class="category" data-category="language_schools">
+            <div class="category-icon">🗣️</div>
+            <div class="category-name">Языковые школы</div>
+        </div>
+    </div>
+    <div class="businesses-section">
+        <div class="section-title" id="businesses-title">
+            Бизнесы
+        </div>
+        <div id="message"></div>
+        <div
+            class="businesses-list"
+            id="businesses-list"
+        ></div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+    const SUPABASE_URL = "https://mzbweaovalklyojtdrmq.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_uaJkPRsPjlYnv-JPUU0UfA_EV9JEzmx";
+    const supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+    const categories = document.querySelectorAll(".category");
+    const searchInput = document.getElementById("search");
+    const businessesList = document.getElementById("businesses-list");
+    const businessesTitle = document.getElementById("businesses-title");
+    const message = document.getElementById("message");
     let allBusinesses = [];
     let selectedCategory = null;
+    const categoryNames = {
+        apartments: "Апартаменты",
+        car_rental: "Аренда авто",
+        transfers: "Трансферы",
+        excursions: "Экскурсии",
+        restaurants: "Рестораны",
+        salons: "Салоны",
+        barbershops: "Барбершопы",
+        psychology: "Психология",
+        dentistry: "Стоматология",
+        cosmetology: "Косметология",
+        fitness: "Фитнес",
+        language_schools: "Языковые школы"
+    };
     async function loadBusinesses() {
+        businessesList.innerHTML =
+            '<div class="status">Загрузка бизнесов...</div>';
+        message.innerHTML = "";
         const { data, error } = await supabaseClient
             .from("businesses")
             .select("*")
             .eq("status", "active");
         if (error) {
-            console.error(
-                "Ошибка загрузки бизнесов:",
-                error
-            );
-            return;
-        }
-        allBusinesses = data || [];
-    }
-    function renderBusinesses(businesses) {
-        const container =
-            document.getElementById("businesses-list");
-        container.innerHTML = "";
-        if (businesses.length === 0) {
-            container.innerHTML = `
-                <div class="empty">
-                    В этой категории пока нет доступных бизнесов.
+            console.error(error);
+            businessesList.innerHTML = "";
+            message.innerHTML = `
+                <div class="error">
+                    Ошибка загрузки бизнесов:<br>
+                    ${error.message}
                 </div>
             `;
             return;
         }
-        const title = document.createElement("div");
-        title.className = "selected-title";
-        title.textContent =
-            selectedCategory
-                ? "Доступные бизнесы"
-                : "Все бизнесы";
-        container.appendChild(title);
-        businesses.forEach(business => {
+        allBusinesses = data || [];
+        businessesList.innerHTML = `
+            <div class="status">
+                Выберите категорию выше
+            </div>
+        `;
+    }
+    function renderBusinesses() {
+        const searchText =
+            searchInput.value
+                .trim()
+                .toLowerCase();
+        let filtered = allBusinesses;
+        if (selectedCategory) {
+            filtered = filtered.filter(function(business) {
+                return business.category === selectedCategory;
+            });
+        }
+        if (searchText) {
+            filtered = filtered.filter(function(business) {
+                const name =
+                    (business.name || "").toLowerCase();
+                const description =
+                    (business.description || "").toLowerCase();
+                const address =
+                    (business.address || "").toLowerCase();
+                const category =
+                    (business.category || "").toLowerCase();
+                return (
+                    name.includes(searchText) ||
+                    description.includes(searchText) ||
+                    address.includes(searchText) ||
+                    category.includes(searchText)
+                );
+            });
+        }
+        if (selectedCategory) {
+            businessesTitle.textContent =
+                categoryNames[selectedCategory] ||
+                selectedCategory;
+        } else {
+            businessesTitle.textContent = "Бизнесы";
+        }
+        if (filtered.length === 0) {
+            businessesList.innerHTML = `
+                <div class="empty">
+                    В этой категории пока нет добавленных бизнесов.
+                </div>
+            `;
+            return;
+        }
+        businessesList.innerHTML = "";
+        filtered.forEach(function(business) {
             const card =
                 document.createElement("div");
-            card.className =
-                "business-card";
-            let imageBlock = "";
+            card.className = "business-card";
+            let imageHTML = "";
             if (business.image_url) {
-                imageBlock = `
+                imageHTML = `
                     <img
                         class="business-image"
                         src="${business.image_url}"
@@ -370,117 +375,81 @@
                     >
                 `;
             } else {
-                imageBlock = `
+                imageHTML = `
                     <div class="business-image-placeholder">
                         🏢
                     </div>
                 `;
             }
             card.innerHTML = `
-                ${imageBlock}
+                ${imageHTML}
                 <div class="business-content">
                     <h3>
                         ${business.name || "Без названия"}
                     </h3>
-                    <div class="business-description">
-                        ${business.description || "Описание пока не добавлено."}
-                    </div>
-                    <div class="business-info">
-                        ${
-                            business.address
-                                ? `<div>📍 ${business.address}</div>`
-                                : ""
-                        }
-                        ${
-                            business.phone
-                                ? `<div>📞 ${business.phone}</div>`
-                                : ""
-                        }
-                    </div>
-                    <div class="business-open">
+                    ${
+                        business.description
+                        ? `
+                            <div class="business-description">
+                                ${business.description}
+                            </div>
+                        `
+                        : ""
+                    }
+                    ${
+                        business.address
+                        ? `
+                            <div class="business-info">
+                                📍 ${business.address}
+                            </div>
+                        `
+                        : ""
+                    }
+                    ${
+                        business.phone
+                        ? `
+                            <div class="business-info">
+                                📞 ${business.phone}
+                            </div>
+                        `
+                        : ""
+                    }
+                    <div class="business-link">
                         Подробнее →
                     </div>
                 </div>
             `;
-            card.addEventListener(
-                "click",
-                function() {
-                    alert(
-                        "Страница бизнеса будет открыта на следующем этапе."
-                    );
-                }
-            );
-            container.appendChild(card);
+            card.addEventListener("click", function() {
+                alert(
+                    "Страница бизнеса будет открыта на следующем этапе."
+                );
+            });
+            businessesList.appendChild(card);
         });
     }
-    document
-        .querySelectorAll(".category")
-        .forEach(category => {
-            category.addEventListener(
-                "click",
-                function() {
-                    const categoryName =
-                        this.dataset.category;
-                    document
-                        .querySelectorAll(".category")
-                        .forEach(item => {
-                            item.classList.remove("active");
-                        });
-                    this.classList.add("active");
-                    selectedCategory =
-                        categoryName;
-                    const filteredBusinesses =
-                        allBusinesses.filter(
-                            business =>
-                                business.category ===
-                                categoryName
-                        );
-                    renderBusinesses(
-                        filteredBusinesses
-                    );
-                }
-            );
+    categories.forEach(function(category) {
+        category.addEventListener("click", function() {
+            categories.forEach(function(item) {
+                item.classList.remove("active");
+            });
+            category.classList.add("active");
+            selectedCategory =
+                category.dataset.category;
+            searchInput.value = "";
+            renderBusinesses();
+            document.querySelector(
+                ".businesses-section"
+            ).scrollIntoView({
+                behavior: "smooth"
+            });
         });
-    document
-        .getElementById("search")
-        .addEventListener(
-            "input",
-            function() {
-                const searchText =
-                    this.value
-                        .toLowerCase()
-                        .trim();
-                let filteredBusinesses =
-                    allBusinesses;
-                if (selectedCategory) {
-                    filteredBusinesses =
-                        filteredBusinesses.filter(
-                            business =>
-                                business.category ===
-                                selectedCategory
-                        );
-                }
-                if (searchText) {
-                    filteredBusinesses =
-                        filteredBusinesses.filter(
-                            business => {
-                                const text = `
-                                    ${business.name || ""}
-                                    ${business.description || ""}
-                                    ${business.address || ""}
-                                    ${business.category || ""}
-                                `.toLowerCase();
-                                return text.includes(
-                                    searchText
-                                );
-                            }
-                        );
-                }
-                renderBusinesses(
-                    filteredBusinesses
-                );
-            }
-        );
+    });
+    searchInput.addEventListener(
+        "input",
+        function() {
+            renderBusinesses();
+        }
+    );
     loadBusinesses();
 </script>
 </body>
