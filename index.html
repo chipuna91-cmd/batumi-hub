@@ -14,26 +14,10 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             min-height: 100vh;
             background:
-                radial-gradient(
-                    circle at 0% 0%,
-                    #feda75 0%,
-                    transparent 28%
-                ),
-                radial-gradient(
-                    circle at 100% 0%,
-                    #fa7e1e 0%,
-                    transparent 32%
-                ),
-                radial-gradient(
-                    circle at 0% 100%,
-                    #d62976 0%,
-                    transparent 38%
-                ),
-                radial-gradient(
-                    circle at 100% 100%,
-                    #962fbf 0%,
-                    transparent 40%
-                ),
+                radial-gradient(circle at 0% 0%, #feda75 0%, transparent 28%),
+                radial-gradient(circle at 100% 0%, #fa7e1e 0%, transparent 32%),
+                radial-gradient(circle at 0% 100%, #d62976 0%, transparent 38%),
+                radial-gradient(circle at 100% 100%, #962fbf 0%, transparent 40%),
                 linear-gradient(
                     135deg,
                     #feda75 0%,
@@ -113,8 +97,7 @@
             color: #35143f;
             font-size: 15px;
             outline: none;
-            box-shadow:
-                0 8px 25px rgba(80, 20, 100, 0.18);
+            box-shadow: 0 8px 25px rgba(80, 20, 100, 0.18);
         }
         .search-input::placeholder {
             color: #927f9b;
@@ -126,10 +109,7 @@
         }
         .categories {
             display: grid;
-            grid-template-columns: repeat(
-                auto-fit,
-                minmax(145px, 1fr)
-            );
+            grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
             gap: 12px;
         }
         .category {
@@ -147,8 +127,7 @@
             cursor: pointer;
             font-size: 14px;
             font-weight: 600;
-            box-shadow:
-                0 7px 20px rgba(100, 30, 120, 0.13);
+            box-shadow: 0 7px 20px rgba(100, 30, 120, 0.13);
             transition:
                 transform 0.2s ease,
                 box-shadow 0.2s ease,
@@ -156,8 +135,7 @@
         }
         .category:hover {
             transform: translateY(-2px);
-            box-shadow:
-                0 10px 25px rgba(120, 30, 130, 0.22);
+            box-shadow: 0 10px 25px rgba(120, 30, 130, 0.22);
         }
         .category.active {
             background:
@@ -168,8 +146,7 @@
                     #d62976
                 );
             color: white;
-            box-shadow:
-                0 8px 25px rgba(150, 47, 191, 0.35);
+            box-shadow: 0 8px 25px rgba(150, 47, 191, 0.35);
         }
         .results-section {
             margin-top: 30px;
@@ -179,16 +156,11 @@
             font-size: 23px;
             font-weight: 750;
             margin-bottom: 16px;
-            text-shadow:
-                0 2px 10px rgba(70, 20, 90, 0.25);
+            text-shadow: 0 2px 10px rgba(70, 20, 90, 0.25);
         }
         .businesses-list {
             display: grid;
-            grid-template-columns:
-                repeat(
-                    auto-fit,
-                    minmax(280px, 1fr)
-                );
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 18px;
         }
         .business-card {
@@ -201,8 +173,7 @@
                 );
             border: 1px solid rgba(255,255,255,0.75);
             border-radius: 20px;
-            box-shadow:
-                0 12px 35px rgba(90, 20, 110, 0.20);
+            box-shadow: 0 12px 35px rgba(90, 20, 110, 0.20);
         }
         .business-image {
             width: 100%;
@@ -261,8 +232,7 @@
             color: white;
             font-size: 14px;
             font-weight: 650;
-            box-shadow:
-                0 5px 15px rgba(150, 47, 191, 0.25);
+            box-shadow: 0 5px 15px rgba(150, 47, 191, 0.25);
         }
         .details-button:hover {
             background:
@@ -279,8 +249,7 @@
             background: rgba(255,255,255,0.88);
             border-radius: 18px;
             color: #704f7b;
-            box-shadow:
-                0 10px 25px rgba(100, 30, 120, 0.15);
+            box-shadow: 0 10px 25px rgba(100, 30, 120, 0.15);
         }
         .loading {
             text-align: center;
@@ -299,8 +268,7 @@
                 padding: 22px 15px 40px;
             }
             .categories {
-                grid-template-columns:
-                    repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
             .businesses-list {
                 grid-template-columns: 1fr;
@@ -379,30 +347,10 @@
                         d="M280 0 L268 0 L0 160 L0 180 L12 180 L280 20 Z"
                         fill="#c8102e"
                     />
-                    <rect
-                        x="115"
-                        width="50"
-                        height="180"
-                        fill="#ffffff"
-                    />
-                    <rect
-                        y="65"
-                        width="280"
-                        height="50"
-                        fill="#ffffff"
-                    />
-                    <rect
-                        x="125"
-                        width="30"
-                        height="180"
-                        fill="#c8102e"
-                    />
-                    <rect
-                        y="75"
-                        width="280"
-                        height="30"
-                        fill="#c8102e"
-                    />
+                    <rect x="115" width="50" height="180" fill="#ffffff"/>
+                    <rect y="65" width="280" height="50" fill="#ffffff"/>
+                    <rect x="125" width="30" height="180" fill="#c8102e"/>
+                    <rect y="75" width="280" height="30" fill="#c8102e"/>
                 </svg>
             </button>
         </div>
@@ -428,12 +376,6 @@
             🚗
             <span data-i18n="car_rental">
                 Аренда авто
-            </span>
-        </div>
-        <div class="category" data-category="transfers">
-            🚕
-            <span data-i18n="transfers">
-                Трансферы
             </span>
         </div>
         <div class="category" data-category="excursions">
@@ -470,18 +412,6 @@
             💄
             <span data-i18n="cosmetology">
                 Косметология
-            </span>
-        </div>
-        <div class="category" data-category="fitness">
-            🏋️
-            <span data-i18n="fitness">
-                Фитнес
-            </span>
-        </div>
-        <div class="category" data-category="language_schools">
-            📚
-            <span data-i18n="language_schools">
-                Языковые школы
             </span>
         </div>
     </div>
@@ -559,8 +489,6 @@
                     "Апартаменты",
                 car_rental:
                     "Аренда авто",
-                transfers:
-                    "Трансферы",
                 excursions:
                     "Экскурсии",
                 restaurants:
@@ -572,11 +500,7 @@
                 dentistry:
                     "Стоматология",
                 cosmetology:
-                    "Косметология",
-                fitness:
-                    "Фитнес",
-                language_schools:
-                    "Языковые школы"
+                    "Косметология"
             }
         },
         ka: {
@@ -601,8 +525,6 @@
                     "აპარტამენტები",
                 car_rental:
                     "მანქანის ქირაობა",
-                transfers:
-                    "ტრანსფერები",
                 excursions:
                     "ექსკურსიები",
                 restaurants:
@@ -614,11 +536,7 @@
                 dentistry:
                     "სტომატოლოგია",
                 cosmetology:
-                    "კოსმეტოლოგია",
-                fitness:
-                    "ფიტნესი",
-                language_schools:
-                    "ენის სკოლები"
+                    "კოსმეტოლოგია"
             }
         },
         en: {
@@ -643,8 +561,6 @@
                     "Apartments",
                 car_rental:
                     "Car Rental",
-                transfers:
-                    "Transfers",
                 excursions:
                     "Excursions",
                 restaurants:
@@ -656,11 +572,7 @@
                 dentistry:
                     "Dentistry",
                 cosmetology:
-                    "Cosmetology",
-                fitness:
-                    "Fitness",
-                language_schools:
-                    "Language Schools"
+                    "Cosmetology"
             }
         }
     };
