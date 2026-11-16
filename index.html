@@ -419,40 +419,70 @@
 <main>
     <div class="categories">
         <div class="category" data-category="apartments">
-            🏠 <span data-i18n="apartments">Апартаменты</span>
+            🏠
+            <span data-i18n="apartments">
+                Апартаменты
+            </span>
         </div>
         <div class="category" data-category="car_rental">
-            🚗 <span data-i18n="car_rental">Аренда авто</span>
+            🚗
+            <span data-i18n="car_rental">
+                Аренда авто
+            </span>
         </div>
         <div class="category" data-category="transfers">
-            🚕 <span data-i18n="transfers">Трансферы</span>
+            🚕
+            <span data-i18n="transfers">
+                Трансферы
+            </span>
         </div>
         <div class="category" data-category="excursions">
-            🗺️ <span data-i18n="excursions">Экскурсии</span>
+            🗺️
+            <span data-i18n="excursions">
+                Экскурсии
+            </span>
         </div>
         <div class="category" data-category="restaurants">
-            🍽️ <span data-i18n="restaurants">Рестораны</span>
+            🍽️
+            <span data-i18n="restaurants">
+                Рестораны
+            </span>
         </div>
         <div class="category" data-category="salons">
-            💇 <span data-i18n="salons">Салоны</span>
-        </div>
-        <div class="category" data-category="barbershops">
-            💈 <span data-i18n="barbershops">Барбершопы</span>
+            💇
+            <span data-i18n="salons">
+                Салоны
+            </span>
         </div>
         <div class="category" data-category="psychology">
-            🧠 <span data-i18n="psychology">Психология</span>
+            🧠
+            <span data-i18n="psychology">
+                Психология
+            </span>
         </div>
         <div class="category" data-category="dentistry">
-            🦷 <span data-i18n="dentistry">Стоматология</span>
+            🦷
+            <span data-i18n="dentistry">
+                Стоматология
+            </span>
         </div>
         <div class="category" data-category="cosmetology">
-            💄 <span data-i18n="cosmetology">Косметология</span>
+            💄
+            <span data-i18n="cosmetology">
+                Косметология
+            </span>
         </div>
         <div class="category" data-category="fitness">
-            🏋️ <span data-i18n="fitness">Фитнес</span>
+            🏋️
+            <span data-i18n="fitness">
+                Фитнес
+            </span>
         </div>
         <div class="category" data-category="language_schools">
-            📚 <span data-i18n="language_schools">Языковые школы</span>
+            📚
+            <span data-i18n="language_schools">
+                Языковые школы
+            </span>
         </div>
     </div>
     <div class="results-section">
@@ -537,8 +567,6 @@
                     "Рестораны",
                 salons:
                     "Салоны",
-                barbershops:
-                    "Барбершопы",
                 psychology:
                     "Психология",
                 dentistry:
@@ -581,8 +609,6 @@
                     "რესტორნები",
                 salons:
                     "სალონები",
-                barbershops:
-                    "ბარბერშოპები",
                 psychology:
                     "ფსიქოლოგია",
                 dentistry:
@@ -625,8 +651,6 @@
                     "Restaurants",
                 salons:
                     "Salons",
-                barbershops:
-                    "Barbershops",
                 psychology:
                     "Psychology",
                 dentistry:
@@ -665,7 +689,10 @@
                     category.querySelector(
                         "[data-i18n]"
                     );
-                if (text && t.categories[key]) {
+                if (
+                    text &&
+                    t.categories[key]
+                ) {
                     text.textContent =
                         t.categories[key];
                 }
@@ -717,7 +744,9 @@
                     ${translations[currentLanguage].error}
                 </div>
             `;
-            console.error(result.error);
+            console.error(
+                result.error
+            );
             return;
         }
         allBusinesses =
@@ -870,9 +899,7 @@
                         "active"
                     );
                     selectedCategory =
-                        category
-                            .dataset
-                            .category;
+                        category.dataset.category;
                     renderBusinesses();
                 }
             );
