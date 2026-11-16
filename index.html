@@ -1,641 +1,630 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Batumi Hub</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<title>Batumi Hub</title>
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            min-height: 100vh;
-            background:
-                radial-gradient(circle at 0% 0%, #feda75 0%, transparent 28%),
-                radial-gradient(circle at 100% 0%, #fa7e1e 0%, transparent 32%),
-                radial-gradient(circle at 0% 100%, #d62976 0%, transparent 38%),
-                radial-gradient(circle at 100% 100%, #962fbf 0%, transparent 40%),
-                linear-gradient(
-                    135deg,
-                    #feda75 0%,
-                    #fa7e1e 25%,
-                    #d62976 50%,
-                    #962fbf 75%,
-                    #4f5bd5 100%
-                );
-            color: #2d1838;
-        }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-        header {
-            background:
-                linear-gradient(
-                    135deg,
-                    #4f5bd5 0%,
-                    #962fbf 30%,
-                    #d62976 60%,
-                    #fa7e1e 85%,
-                    #feda75 100%
-                );
-            color: white;
-            padding: 28px 20px 24px;
-            box-shadow: 0 8px 30px rgba(80, 30, 100, 0.25);
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f7d9ff, #d9f0ff);
+    color: #2d2330;
+}
 
-        .header-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+header {
+    padding: 22px 18px 10px;
+    text-align: center;
+}
 
-        .logo {
-            font-size: 32px;
-            font-weight: 800;
-            letter-spacing: -1px;
-            cursor: pointer;
-        }
+.logo {
+    font-size: 30px;
+    font-weight: 800;
+    cursor: pointer;
+    color: #222;
+}
 
-        .subtitle {
-            margin-top: 6px;
-            font-size: 15px;
-            opacity: 0.92;
-        }
+.subtitle {
+    margin-top: 7px;
+    color: #725c79;
+    font-size: 14px;
+}
 
-        .languages {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 14px;
-        }
+.language-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 16px 0;
+}
 
-        .language-button {
-            width: 42px;
-            height: 30px;
-            padding: 3px;
-            border: 1px solid rgba(255,255,255,0.45);
-            border-radius: 8px;
-            background: rgba(255,255,255,0.16);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+.language-button {
+    width: 42px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 6px;
+    overflow: hidden;
+}
 
-        .language-button svg {
-            width: 32px;
-            height: 21px;
-            display: block;
-            border-radius: 2px;
-        }
+.language-button svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 6px;
+}
 
-        .search-container {
-            max-width: 1100px;
-            margin: 20px auto 0;
-        }
+.language-button.active {
+    outline: 2px solid #7d4cdb;
+    outline-offset: 2px;
+}
 
-        .search-input {
-            width: 100%;
-            padding: 15px 18px;
-            border: none;
-            border-radius: 16px;
-            background: rgba(255,255,255,0.94);
-            color: #35143f;
-            font-size: 15px;
-            outline: none;
-            box-shadow: 0 8px 25px rgba(80, 20, 100, 0.18);
-        }
+.search-wrapper {
+    max-width: 600px;
+    margin: 0 auto 18px;
+    padding: 0 16px;
+}
 
-        main {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 28px 20px 50px;
-        }
+.search {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 14px 18px;
+    border-radius: 16px;
+    font-size: 15px;
+    background: rgba(255,255,255,0.92);
+    box-shadow: 0 5px 20px rgba(80,50,90,0.08);
+}
 
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
-            gap: 12px;
-        }
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 16px 40px;
+}
 
-        .category {
-            border: 1px solid rgba(255,255,255,0.55);
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(255,255,255,0.88),
-                    rgba(255,240,249,0.88)
-                );
-            color: #522060;
-            padding: 15px 12px;
-            border-radius: 16px;
-            text-align: center;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            box-shadow: 0 7px 20px rgba(100, 30, 120, 0.13);
-            transition: 0.2s ease;
-        }
+.categories {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
 
-        .category:hover {
-            transform: translateY(-2px);
-        }
+.category {
+    border: none;
+    border-radius: 18px;
+    padding: 18px 10px;
+    background: rgba(255,255,255,0.9);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    color: #3d3042;
+    box-shadow: 0 5px 18px rgba(70,40,80,0.08);
+    transition: 0.2s;
+}
 
-        .category.active {
-            background:
-                linear-gradient(
-                    135deg,
-                    #4f5bd5,
-                    #962fbf,
-                    #d62976
-                );
-            color: white;
-        }
+.category:hover {
+    transform: translateY(-2px);
+}
 
-        .results-section {
-            margin-top: 30px;
-        }
+.category.active {
+    background: #7b4bd8;
+    color: white;
+}
 
-        .top-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
+.add-business-button {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    margin: 10px auto 22px;
+    border: none;
+    border-radius: 16px;
+    padding: 15px 20px;
+    background: #222;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
 
-        .action-button {
-            border: none;
-            padding: 13px 18px;
-            border-radius: 14px;
-            color: white;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 700;
-            background:
-                linear-gradient(
-                    135deg,
-                    #4f5bd5,
-                    #962fbf,
-                    #d62976
-                );
-            box-shadow: 0 7px 20px rgba(100, 30, 120, 0.25);
-        }
+.results-title {
+    text-align: center;
+    font-size: 23px;
+    font-weight: 800;
+    margin: 20px 0;
+}
 
-        .back-button {
-            border: none;
-            padding: 13px 18px;
-            border-radius: 14px;
-            color: #522060;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 700;
-            background: rgba(255,255,255,0.9);
-        }
+.businesses-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
 
-        .results-title {
-            color: white;
-            font-size: 23px;
-            font-weight: 750;
-            margin-bottom: 16px;
-            text-shadow: 0 2px 10px rgba(70, 20, 90, 0.25);
-        }
+.business-card {
+    background: rgba(255,255,255,0.95);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(70,40,80,0.1);
+}
 
-        .businesses-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 18px;
-        }
+.business-card-image {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    display: block;
+}
 
-        .business-card {
-            overflow: hidden;
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,0.96),
-                    rgba(255,240,249,0.96)
-                );
-            border-radius: 20px;
-            box-shadow: 0 12px 35px rgba(90, 20, 110, 0.20);
-        }
+.business-card-content {
+    padding: 17px;
+}
 
-        .business-image {
-            width: 100%;
-            height: 190px;
-            object-fit: cover;
-            display: block;
-        }
+.business-card h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+}
 
-        .business-image-placeholder {
-            width: 100%;
-            height: 190px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 52px;
-            background:
-                linear-gradient(
-                    135deg,
-                    #4f5bd5,
-                    #962fbf,
-                    #d62976,
-                    #fa7e1e
-                );
-        }
+.business-description {
+    color: #67596a;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
 
-        .business-content {
-            padding: 18px;
-        }
+.business-address,
+.business-phone,
+.business-price {
+    font-size: 14px;
+    margin: 7px 0;
+}
 
-        .business-name {
-            color: #4f1d67;
-            font-size: 20px;
-            font-weight: 750;
-            margin-bottom: 8px;
-        }
+.details-button {
+    width: 100%;
+    margin-top: 12px;
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    background: #7b4bd8;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
 
-        .business-description {
-            color: #654c70;
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 12px;
-        }
+.empty-state,
+.loading {
+    text-align: center;
+    background: rgba(255,255,255,0.75);
+    border-radius: 18px;
+    padding: 25px 18px;
+    color: #705d76;
+}
 
-        .business-info {
-            color: #73577e;
-            font-size: 14px;
-            margin-top: 7px;
-        }
+.detail-view {
+    max-width: 700px;
+    margin: 0 auto;
+}
 
-        .details-button {
-            margin-top: 16px;
-            display: inline-block;
-            padding: 10px 16px;
-            border-radius: 12px;
-            background:
-                linear-gradient(
-                    135deg,
-                    #4f5bd5,
-                    #962fbf,
-                    #d62976
-                );
-            color: white;
-            font-size: 14px;
-            font-weight: 650;
-            cursor: pointer;
-        }
+.detail-card {
+    background: rgba(255,255,255,0.96);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(70,40,80,0.12);
+}
 
-        .empty-state {
-            padding: 35px 20px;
-            text-align: center;
-            background: rgba(255,255,255,0.88);
-            border-radius: 18px;
-            color: #704f7b;
-        }
+.detail-image {
+    width: 100%;
+    max-height: 450px;
+    object-fit: cover;
+    display: block;
+}
 
-        .loading {
-            text-align: center;
-            padding: 30px;
-            color: white;
-        }
+.detail-content {
+    padding: 22px;
+}
 
-        .form-container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: rgba(255,255,255,0.95);
-            padding: 25px;
-            border-radius: 22px;
-            box-shadow: 0 15px 40px rgba(80,20,100,0.25);
-        }
+.detail-content h1 {
+    margin: 0 0 15px;
+    font-size: 28px;
+}
 
-        .form-title {
-            color: #4f1d67;
-            font-size: 25px;
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
+.detail-description {
+    font-size: 16px;
+    line-height: 1.65;
+    color: #574c59;
+    white-space: pre-line;
+}
 
-        .form-group {
-            margin-bottom: 16px;
-        }
+.detail-info {
+    margin-top: 20px;
+}
 
-        .form-group label {
-            display: block;
-            margin-bottom: 7px;
-            color: #522060;
-            font-size: 14px;
-            font-weight: 700;
-        }
+.detail-info div {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+}
 
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 13px 14px;
-            border: 1px solid #ddd0e3;
-            border-radius: 12px;
-            font-size: 15px;
-            outline: none;
-            background: white;
-        }
+.back-button {
+    display: none;
+    border: none;
+    background: rgba(255,255,255,0.9);
+    padding: 11px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
 
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
+.form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.96);
+    border-radius: 22px;
+    padding: 22px;
+    box-shadow: 0 10px 30px rgba(70,40,80,0.1);
+}
 
-        .file-input {
-            padding: 10px !important;
-            cursor: pointer;
-        }
+.form-wrapper h2 {
+    margin-top: 0;
+}
 
-        .photo-preview {
-            width: 100%;
-            max-height: 250px;
-            object-fit: cover;
-            border-radius: 14px;
-            margin-top: 10px;
-            display: none;
-        }
+.form-group {
+    margin-bottom: 15px;
+}
 
-        .photo-name {
-            margin-top: 8px;
-            color: #73577e;
-            font-size: 13px;
-        }
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 700;
+}
 
-        .form-submit {
-            width: 100%;
-            border: none;
-            padding: 15px;
-            border-radius: 13px;
-            background:
-                linear-gradient(
-                    135deg,
-                    #4f5bd5,
-                    #962fbf,
-                    #d62976
-                );
-            color: white;
-            font-size: 16px;
-            font-weight: 800;
-            cursor: pointer;
-        }
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 13px;
+    font-size: 15px;
+    outline: none;
+    background: white;
+}
 
-        .form-submit:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
+.form-group textarea {
+    min-height: 110px;
+    resize: vertical;
+}
 
-        .success-message {
-            text-align: center;
-            padding: 30px 15px;
-            background: rgba(255,255,255,0.95);
-            border-radius: 20px;
-            color: #522060;
-        }
+.form-submit {
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    padding: 14px;
+    background: #7b4bd8;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
 
-        .detail-page {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(255,255,255,0.96);
-            border-radius: 22px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(80,20,100,0.25);
-        }
+.form-submit:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
 
-        .detail-page img {
-            width: 100%;
-            max-height: 430px;
-            object-fit: cover;
-        }
+.image-preview {
+    margin-top: 10px;
+}
 
-        .detail-content {
-            padding: 25px;
-        }
+.image-preview img {
+    width: 100%;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+}
 
-        .detail-title {
-            color: #4f1d67;
-            font-size: 30px;
-            font-weight: 800;
-            margin-bottom: 15px;
-        }
+.file-note {
+    margin-top: 7px;
+    color: #73577e;
+    font-size: 12px;
+}
 
-        .detail-description {
-            color: #654c70;
-            line-height: 1.7;
-            margin: 18px 0;
-        }
+.hidden {
+    display: none !important;
+}
 
-        .detail-info {
-            color: #73577e;
-            font-size: 15px;
-            margin-top: 10px;
-        }
+@media (max-width: 700px) {
+    .categories {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-        @media (max-width: 600px) {
-            header {
-                padding: 23px 15px 20px;
-            }
+    .businesses-list {
+        grid-template-columns: 1fr;
+    }
 
-            .logo {
-                font-size: 28px;
-            }
+    .business-card-image {
+        height: 210px;
+    }
 
-            main {
-                padding: 22px 15px 40px;
-            }
-
-            .categories {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .businesses-list {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    .detail-content h1 {
+        font-size: 24px;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <div class="header-inner">
 
-        <div class="logo" id="logo">
-            Batumi Hub
-        </div>
+    <div class="logo" id="logo">
+        Batumi Hub
+    </div>
 
-        <div class="subtitle" id="subtitle">
-            Все услуги Батуми в одном месте
-        </div>
+    <div class="subtitle" id="subtitle">
+        Всё необходимое в одном месте
+    </div>
 
-        <div class="languages">
+    <div class="language-buttons">
 
-            <!-- ФЛАГ ГРУЗИИ -->
-            <button
-                class="language-button"
-                title="ქართული"
-                aria-label="ქართული"
-                data-language="ka"
-            >
-                <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="280" height="180" fill="#ffffff"/>
-                    <rect x="132" y="0" width="16" height="180" fill="#d40000"/>
-                    <rect x="0" y="82" width="280" height="16" fill="#d40000"/>
-                    <g fill="#d40000">
-                        <rect x="45" y="24" width="10" height="52"/>
-                        <rect x="24" y="45" width="52" height="10"/>
-                        <rect x="225" y="24" width="10" height="52"/>
-                        <rect x="204" y="45" width="52" height="10"/>
-                        <rect x="45" y="104" width="10" height="52"/>
-                        <rect x="24" y="125" width="52" height="10"/>
-                        <rect x="225" y="104" width="10" height="52"/>
-                        <rect x="204" y="125" width="52" height="10"/>
-                    </g>
-                </svg>
-            </button>
+        <!-- ФЛАГ ГРУЗИИ -->
+        <button
+            class="language-button"
+            title="ქართული"
+            aria-label="ქართული"
+            data-language="ka"
+        >
+            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+                <rect width="280" height="180" fill="#ffffff"/>
+                <rect x="132" y="0" width="16" height="180" fill="#d40000"/>
+                <rect x="0" y="82" width="280" height="16" fill="#d40000"/>
+                <g fill="#d40000">
+                    <rect x="45" y="24" width="10" height="52"/>
+                    <rect x="24" y="45" width="52" height="10"/>
+                    <rect x="225" y="24" width="10" height="52"/>
+                    <rect x="204" y="45" width="52" height="10"/>
+                    <rect x="45" y="104" width="10" height="52"/>
+                    <rect x="24" y="125" width="52" height="10"/>
+                    <rect x="225" y="104" width="10" height="52"/>
+                    <rect x="204" y="125" width="52" height="10"/>
+                </g>
+            </svg>
+        </button>
 
-            <!-- ФЛАГ РОССИИ -->
-            <button
-                class="language-button"
-                title="Русский"
-                aria-label="Русский"
-                data-language="ru"
-            >
-                <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="280" height="60" fill="#ffffff"/>
-                    <rect y="60" width="280" height="60" fill="#0052b4"/>
-                    <rect y="120" width="280" height="60" fill="#d80027"/>
-                </svg>
-            </button>
+        <!-- ФЛАГ РОССИИ -->
+        <button
+            class="language-button"
+            title="Русский"
+            aria-label="Русский"
+            data-language="ru"
+        >
+            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+                <rect width="280" height="60" fill="#ffffff"/>
+                <rect y="60" width="280" height="60" fill="#0052b4"/>
+                <rect y="120" width="280" height="60" fill="#d80027"/>
+            </svg>
+        </button>
 
-            <!-- ФЛАГ ВЕЛИКОБРИТАНИИ -->
-            <button
-                class="language-button"
-                title="English"
-                aria-label="English"
-                data-language="en"
-            >
-                <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="280" height="180" fill="#012169"/>
-
-                    <path
-                        d="M0 0 L32 0 L280 148 L280 180 L248 180 L0 32 Z"
-                        fill="#ffffff"
-                    />
-
-                    <path
-                        d="M280 0 L248 0 L0 148 L0 180 L32 180 L280 32 Z"
-                        fill="#ffffff"
-                    />
-
-                    <path
-                        d="M0 0 L12 0 L280 160 L280 180 L268 180 L0 20 Z"
-                        fill="#c8102e"
-                    />
-
-                    <path
-                        d="M280 0 L268 0 L0 160 L0 180 L12 180 L280 20 Z"
-                        fill="#c8102e"
-                    />
-
-                    <rect x="115" width="50" height="180" fill="#ffffff"/>
-                    <rect y="65" width="280" height="50" fill="#ffffff"/>
-                    <rect x="125" width="30" height="180" fill="#c8102e"/>
-                    <rect y="75" width="280" height="30" fill="#c8102e"/>
-                </svg>
-            </button>
-
-        </div>
-
-        <div class="search-container">
-            <input
-                type="text"
-                id="searchInput"
-                class="search-input"
-                placeholder="Поиск бизнеса или услуги..."
-            >
-        </div>
+        <!-- ФЛАГ ВЕЛИКОБРИТАНИИ -->
+        <button
+            class="language-button"
+            title="English"
+            aria-label="English"
+            data-language="en"
+        >
+            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+                <rect width="280" height="180" fill="#012169"/>
+                <path d="M0 0 L32 0 L280 148 L280 180 L248 180 L0 32 Z" fill="#ffffff"/>
+                <path d="M280 0 L248 0 L0 148 L0 180 L32 180 L280 32 Z" fill="#ffffff"/>
+                <path d="M0 0 L12 0 L280 160 L280 180 L268 180 L0 20 Z" fill="#c8102e"/>
+                <path d="M280 0 L268 0 L0 160 L0 180 L12 180 L280 20 Z" fill="#c8102e"/>
+                <rect x="115" width="50" height="180" fill="#ffffff"/>
+                <rect y="65" width="280" height="50" fill="#ffffff"/>
+                <rect x="125" width="30" height="180" fill="#c8102e"/>
+                <rect y="75" width="280" height="30" fill="#c8102e"/>
+            </svg>
+        </button>
 
     </div>
+
 </header>
 
-<main>
+<div class="search-wrapper">
+    <input
+        type="text"
+        id="search"
+        class="search"
+        placeholder="Поиск..."
+    >
+</div>
+
+<div class="container">
 
     <div class="categories">
 
-        <div class="category" data-category="apartments">
-            🏠 <span data-i18n="apartments">Апартаменты</span>
-        </div>
+        <button class="category" data-category="apartments">
+            <span data-category-name="apartments">Апартаменты</span>
+        </button>
 
-        <div class="category" data-category="car_rental">
-            🚗 <span data-i18n="car_rental">Аренда авто</span>
-        </div>
+        <button class="category" data-category="car_rental">
+            <span data-category-name="car_rental">Аренда авто</span>
+        </button>
 
-        <div class="category" data-category="excursions">
-            🗺️ <span data-i18n="excursions">Экскурсии</span>
-        </div>
+        <button class="category" data-category="excursions">
+            <span data-category-name="excursions">Экскурсии</span>
+        </button>
 
-        <div class="category" data-category="restaurants">
-            🍽️ <span data-i18n="restaurants">Рестораны</span>
-        </div>
+        <button class="category" data-category="restaurants">
+            <span data-category-name="restaurants">Рестораны</span>
+        </button>
 
-        <div class="category" data-category="salons">
-            💇 <span data-i18n="salons">Салоны</span>
-        </div>
+        <button class="category" data-category="salons">
+            <span data-category-name="salons">Салоны</span>
+        </button>
 
-        <div class="category" data-category="psychology">
-            🧠 <span data-i18n="psychology">Психология</span>
-        </div>
+        <button class="category" data-category="psychology">
+            <span data-category-name="psychology">Психология</span>
+        </button>
 
-        <div class="category" data-category="dentistry">
-            🦷 <span data-i18n="dentistry">Стоматология</span>
-        </div>
+        <button class="category" data-category="dentistry">
+            <span data-category-name="dentistry">Стоматология</span>
+        </button>
 
-        <div class="category" data-category="cosmetology">
-            💄 <span data-i18n="cosmetology">Косметология</span>
-        </div>
+        <button class="category" data-category="cosmetology">
+            <span data-category-name="cosmetology">Косметология</span>
+        </button>
 
     </div>
 
-    <div class="results-section">
+    <button
+        class="add-business-button"
+        id="addBusinessButton"
+    >
+        Добавить свою услугу
+    </button>
 
-        <div class="top-actions">
+    <button
+        class="back-button"
+        id="backButton"
+    >
+        ← Назад
+    </button>
 
-            <button
-                class="action-button"
-                id="addBusinessButton"
-            >
-                ➕ Добавить свою услугу
-            </button>
-
-            <button
-                class="back-button"
-                id="backButton"
-                style="display:none;"
-            >
-                ← Назад
-            </button>
-
-        </div>
+    <div id="mainContent">
 
         <div
-            class="results-title"
-            id="resultsTitle"
+            class="empty-state"
+            id="homeMessage"
         >
-            Выберите категорию
+            Выберите категорию, чтобы увидеть опубликованные услуги.
         </div>
 
+        <h2
+            class="results-title hidden"
+            id="resultsTitle"
+        ></h2>
+
         <div
-            id="businessesList"
             class="businesses-list"
+            id="businessesList"
         ></div>
 
     </div>
 
-</main>
+    <!-- ФОРМА ДОБАВЛЕНИЯ -->
+    <div
+        id="addBusinessForm"
+        class="form-wrapper hidden"
+    >
+
+        <h2 id="formTitle">
+            Добавить свою услугу
+        </h2>
+
+        <form id="businessForm">
+
+            <div class="form-group">
+                <label id="nameLabel">Название</label>
+                <input
+                    type="text"
+                    id="businessName"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label id="categoryLabel">Категория</label>
+
+                <select
+                    id="businessCategory"
+                    required
+                >
+                    <option value="apartments">Апартаменты</option>
+                    <option value="car_rental">Аренда авто</option>
+                    <option value="excursions">Экскурсии</option>
+                    <option value="restaurants">Рестораны</option>
+                    <option value="salons">Салоны</option>
+                    <option value="psychology">Психология</option>
+                    <option value="dentistry">Стоматология</option>
+                    <option value="cosmetology">Косметология</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label id="descriptionLabel">Описание</label>
+                <textarea
+                    id="businessDescription"
+                    required
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label id="addressLabel">Адрес</label>
+                <input
+                    type="text"
+                    id="businessAddress"
+                >
+            </div>
+
+            <div class="form-group">
+                <label id="phoneLabel">Телефон</label>
+                <input
+                    type="tel"
+                    id="businessPhone"
+                >
+            </div>
+
+            <div class="form-group">
+                <label id="priceLabel">Цена</label>
+                <input
+                    type="text"
+                    id="businessPrice"
+                >
+            </div>
+
+            <div class="form-group">
+
+                <label id="imageLabel">
+                    Фото
+                </label>
+
+                <input
+                    type="file"
+                    id="businessImage"
+                    accept="image/*"
+                >
+
+                <div class="file-note" id="fileNote">
+                    Выберите фотографию с телефона.
+                </div>
+
+                <div
+                    class="image-preview"
+                    id="imagePreview"
+                ></div>
+
+            </div>
+
+            <button
+                type="submit"
+                class="form-submit"
+                id="formSubmit"
+            >
+                Отправить
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -653,29 +642,6 @@ const supabaseClient =
         SUPABASE_KEY
     );
 
-const businessesList =
-    document.getElementById("businessesList");
-
-const searchInput =
-    document.getElementById("searchInput");
-
-const categories =
-    document.querySelectorAll(".category");
-
-const addBusinessButton =
-    document.getElementById("addBusinessButton");
-
-const backButton =
-    document.getElementById("backButton");
-
-const resultsTitle =
-    document.getElementById("resultsTitle");
-
-const logo =
-    document.getElementById("logo");
-
-const subtitle =
-    document.getElementById("subtitle");
 
 let allBusinesses = [];
 
@@ -683,37 +649,42 @@ let selectedCategory = "";
 
 let currentLanguage = "ru";
 
+/*
+    Здесь сохраняем положение страницы
+    перед переходом в подробности.
+*/
+let savedScrollPosition = 0;
+
+let currentBusiness = null;
+
 
 const translations = {
 
     ru: {
 
         subtitle:
-            "Все услуги Батуми в одном месте",
+            "Всё необходимое в одном месте",
 
         searchPlaceholder:
-            "Поиск бизнеса или услуги...",
-
-        chooseCategory:
-            "Выберите категорию",
-
-        businesses:
-            "Бизнесы",
+            "Поиск...",
 
         add:
-            "➕ Добавить свою услугу",
+            "Добавить свою услугу",
 
         back:
             "← Назад",
 
         details:
-            "Подробнее →",
+            "Подробнее",
 
         loading:
-            "Загружаем объявления...",
+            "Загрузка...",
 
         empty:
             "Пока здесь нет опубликованных объявлений.",
+
+        homeHint:
+            "Выберите категорию, чтобы увидеть опубликованные услуги.",
 
         noName:
             "Без названия",
@@ -740,19 +711,19 @@ const translations = {
             "Цена",
 
         image:
-            "Фотография",
+            "Фото",
 
-        photoHint:
-            "Можно выбрать фотографию с телефона.",
-
-        upload:
-            "Загружаем фотографию...",
+        choosePhoto:
+            "Выберите фотографию с телефона.",
 
         submit:
-            "Отправить на проверку",
+            "Отправить",
+
+        uploading:
+            "Загрузка...",
 
         success:
-            "Заявка отправлена! После проверки она появится на сайте.",
+            "Ваша заявка отправлена и будет рассмотрена администратором.",
 
         categoryNames: {
 
@@ -782,40 +753,38 @@ const translations = {
         }
     },
 
+
     ka: {
 
         subtitle:
-            "ბათუმის ყველა სერვისი ერთ ადგილას",
+            "ყველაფერი საჭირო ერთ ადგილას",
 
         searchPlaceholder:
-            "მოძებნეთ ბიზნესი ან სერვისი...",
-
-        chooseCategory:
-            "აირჩიეთ კატეგორია",
-
-        businesses:
-            "ბიზნესები",
+            "ძიება...",
 
         add:
-            "➕ დაამატეთ თქვენი სერვისი",
+            "დაამატე შენი სერვისი",
 
         back:
             "← უკან",
 
         details:
-            "დეტალურად →",
+            "დეტალურად",
 
         loading:
-            "განცხადებები იტვირთება...",
+            "იტვირთება...",
 
         empty:
             "ჯერ გამოქვეყნებული განცხადებები არ არის.",
+
+        homeHint:
+            "აირჩიეთ კატეგორია გამოქვეყნებული სერვისების სანახავად.",
 
         noName:
             "სახელის გარეშე",
 
         formTitle:
-            "დაამატეთ თქვენი სერვისი",
+            "დაამატე შენი სერვისი",
 
         name:
             "სახელი",
@@ -838,17 +807,17 @@ const translations = {
         image:
             "ფოტო",
 
-        photoHint:
-            "შეგიძლიათ ფოტო ტელეფონიდან აირჩიოთ.",
-
-        upload:
-            "ფოტო იტვირთება...",
+        choosePhoto:
+            "აირჩიეთ ფოტო ტელეფონიდან.",
 
         submit:
-            "შემოწმებაზე გაგზავნა",
+            "გაგზავნა",
+
+        uploading:
+            "იტვირთება...",
 
         success:
-            "განაცხადი გაიგზავნა! შემოწმების შემდეგ ის გამოჩნდება საიტზე.",
+            "თქვენი განაცხადი გაგზავნილია და ადმინისტრატორი განიხილავს.",
 
         categoryNames: {
 
@@ -856,7 +825,7 @@ const translations = {
                 "აპარტამენტები",
 
             car_rental:
-                "მანქანის ქირაობა",
+                "ავტომობილების ქირაობა",
 
             excursions:
                 "ექსკურსიები",
@@ -878,34 +847,32 @@ const translations = {
         }
     },
 
+
     en: {
 
         subtitle:
-            "All Batumi services in one place",
+            "Everything you need in one place",
 
         searchPlaceholder:
-            "Search for a business or service...",
-
-        chooseCategory:
-            "Choose a category",
-
-        businesses:
-            "Businesses",
+            "Search...",
 
         add:
-            "➕ Add your service",
+            "Add your service",
 
         back:
             "← Back",
 
         details:
-            "Details →",
+            "Details",
 
         loading:
-            "Loading listings...",
+            "Loading...",
 
         empty:
             "There are no published listings yet.",
+
+        homeHint:
+            "Choose a category to see published services.",
 
         noName:
             "No name",
@@ -934,17 +901,17 @@ const translations = {
         image:
             "Photo",
 
-        photoHint:
-            "You can choose a photo from your phone.",
-
-        upload:
-            "Uploading photo...",
+        choosePhoto:
+            "Choose a photo from your phone.",
 
         submit:
-            "Send for review",
+            "Submit",
+
+        uploading:
+            "Uploading...",
 
         success:
-            "Your request has been sent! It will appear on the website after approval.",
+            "Your request has been submitted and will be reviewed by an administrator.",
 
         categoryNames: {
 
@@ -952,7 +919,7 @@ const translations = {
                 "Apartments",
 
             car_rental:
-                "Car Rental",
+                "Car rental",
 
             excursions:
                 "Excursions",
@@ -977,42 +944,85 @@ const translations = {
 };
 
 
-function showHome() {
+const subtitle =
+    document.getElementById("subtitle");
 
-    selectedCategory = "";
+const search =
+    document.getElementById("search");
 
-    categories.forEach(
-        category =>
-            category.classList.remove("active")
-    );
+const businessesList =
+    document.getElementById("businessesList");
 
-    backButton.style.display =
-        "none";
+const resultsTitle =
+    document.getElementById("resultsTitle");
 
-    addBusinessButton.style.display =
-        "inline-block";
+const backButton =
+    document.getElementById("backButton");
 
-    resultsTitle.textContent =
-        translations[currentLanguage].chooseCategory;
+const addBusinessButton =
+    document.getElementById("addBusinessButton");
 
-    businessesList.className =
-        "businesses-list";
+const addBusinessForm =
+    document.getElementById("addBusinessForm");
 
-    businessesList.innerHTML = "";
+const homeMessage =
+    document.getElementById("homeMessage");
+
+const businessForm =
+    document.getElementById("businessForm");
+
+const imageInput =
+    document.getElementById("businessImage");
+
+const imagePreview =
+    document.getElementById("imagePreview");
+
+
+/* =========================
+   БЕЗОПАСНЫЙ HTML
+========================= */
+
+function escapeHTML(value) {
+
+    if (value === null || value === undefined) {
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
+
+/* =========================
+   ID ОБЪЯВЛЕНИЯ
+========================= */
+
+function getBusinessId(business) {
+
+    return business.id ??
+           business.ID;
+}
+
+
+/* =========================
+   ПЕРЕВОД
+========================= */
 
 function changeLanguage(language) {
 
     currentLanguage = language;
 
     const t =
-        translations[language];
+        translations[currentLanguage];
 
     subtitle.textContent =
         t.subtitle;
 
-    searchInput.placeholder =
+    search.placeholder =
         t.searchPlaceholder;
 
     addBusinessButton.textContent =
@@ -1021,42 +1031,87 @@ function changeLanguage(language) {
     backButton.textContent =
         t.back;
 
-    document.documentElement.lang =
-        language;
+    document.getElementById("formTitle")
+        .textContent = t.formTitle;
 
-    categories.forEach(category => {
+    document.getElementById("nameLabel")
+        .textContent = t.name;
 
-        const key =
-            category.dataset.category;
+    document.getElementById("categoryLabel")
+        .textContent = t.category;
 
-        const text =
-            category.querySelector("[data-i18n]");
+    document.getElementById("descriptionLabel")
+        .textContent = t.description;
 
-        if (text) {
+    document.getElementById("addressLabel")
+        .textContent = t.address;
 
-            text.textContent =
-                t.categoryNames[key];
+    document.getElementById("phoneLabel")
+        .textContent = t.phone;
 
-        }
+    document.getElementById("priceLabel")
+        .textContent = t.price;
 
-    });
+    document.getElementById("imageLabel")
+        .textContent = t.image;
 
-    if (selectedCategory) {
+    document.getElementById("fileNote")
+        .textContent = t.choosePhoto;
 
-        resultsTitle.textContent =
-            t.categoryNames[selectedCategory];
+    document.getElementById("formSubmit")
+        .textContent = t.submit;
 
-        renderBusinesses();
+    document.querySelectorAll("[data-category-name]")
+        .forEach(element => {
+
+            const category =
+                element.dataset.categoryName;
+
+            element.textContent =
+                t.categoryNames[category];
+        });
+
+
+    /*
+        Если сейчас открыта подробная
+        страница — обновляем её.
+    */
+    if (currentBusiness) {
+
+        renderBusinessDetails(
+            currentBusiness,
+            false
+        );
 
     } else {
 
-        showHome();
-
+        renderBusinesses();
     }
+
+
+    document.querySelectorAll(".language-button")
+        .forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.language === language
+            );
+
+        });
 }
 
 
+/* =========================
+   ЗАГРУЗКА ОБЪЯВЛЕНИЙ
+========================= */
+
 async function loadBusinesses() {
+
+    businessesList.innerHTML = `
+        <div class="loading">
+            ${translations[currentLanguage].loading}
+        </div>
+    `;
 
     const result =
         await supabaseClient
@@ -1068,70 +1123,119 @@ async function loadBusinesses() {
 
         console.error(result.error);
 
+        businessesList.innerHTML = `
+            <div class="empty-state">
+                ${escapeHTML(result.error.message)}
+            </div>
+        `;
+
         return;
     }
 
     allBusinesses =
         result.data || [];
 
-    showHome();
+    /*
+        При первой загрузке
+        карточки НЕ показываем.
+    */
+    selectedCategory = "";
+
+    renderBusinesses();
 }
 
 
+/* =========================
+   РЕНДЕР КАРТОЧЕК
+========================= */
+
 function renderBusinesses() {
+
+    currentBusiness = null;
 
     const t =
         translations[currentLanguage];
 
-    if (!selectedCategory) {
+    const searchText =
+        search.value
+            .trim()
+            .toLowerCase();
 
-        showHome();
+
+    /*
+        ГЛАВНАЯ СТРАНИЦА
+
+        Если категория не выбрана
+        и поиск пустой — объявления
+        вообще не показываем.
+    */
+
+    if (!selectedCategory && !searchText) {
+
+        resultsTitle.classList.add("hidden");
+
+        businessesList.innerHTML = "";
+
+        homeMessage.classList.remove("hidden");
 
         return;
     }
 
-    const searchText =
-        searchInput.value
-            .trim()
-            .toLowerCase();
 
-    const filtered =
-        allBusinesses.filter(business => {
+    homeMessage.classList.add("hidden");
 
-            const category =
-                String(
-                    business.category || ""
-                )
-                .trim()
-                .toLowerCase();
+    let filtered =
+        [...allBusinesses];
 
-            const matchesCategory =
-                category === selectedCategory;
 
-            const text =
-                (
-                    String(business.name || "") +
-                    " " +
-                    String(business.description || "") +
-                    " " +
-                    String(business.address || "")
-                )
-                .toLowerCase();
+    if (selectedCategory) {
 
-            const matchesSearch =
-                !searchText ||
-                text.includes(searchText);
-
-            return (
-                matchesCategory &&
-                matchesSearch
+        filtered =
+            filtered.filter(business =>
+                business.category === selectedCategory
             );
+    }
 
-        });
 
-    businessesList.innerHTML = "";
+    if (searchText) {
 
-    if (filtered.length === 0) {
+        filtered =
+            filtered.filter(business => {
+
+                const text = [
+
+                    business.name,
+                    business.description,
+                    business.address,
+                    business.category
+
+                ]
+                .filter(Boolean)
+                .join(" ")
+                .toLowerCase();
+
+                return text.includes(searchText);
+            });
+    }
+
+
+    if (selectedCategory) {
+
+        resultsTitle.textContent =
+            t.categoryNames[selectedCategory] || "";
+
+        resultsTitle.classList.remove("hidden");
+
+    } else {
+
+        resultsTitle.textContent =
+            "Результаты поиска";
+
+        resultsTitle.classList.remove("hidden");
+    }
+
+
+    if (!filtered.length) {
 
         businessesList.innerHTML = `
             <div class="empty-state">
@@ -1142,130 +1246,226 @@ function renderBusinesses() {
         return;
     }
 
-    filtered.forEach(business => {
 
-        const card =
-            document.createElement("div");
+    businessesList.innerHTML =
+        filtered.map(business => {
 
-        card.className =
-            "business-card";
+            const image =
+                business.image_url ||
+                business["Image URL"] ||
+                "";
 
-        let imageHTML;
+            const name =
+                business.name ||
+                business.Name ||
+                t.noName;
 
-        if (business.image_url) {
+            const description =
+                business.description ||
+                business.Description ||
+                "";
 
-            imageHTML = `
-                <img
-                    class="business-image"
-                    src="${business.image_url}"
-                    alt="${business.name || t.noName}"
-                >
-            `;
+            const address =
+                business.address ||
+                business.Address ||
+                "";
 
-        } else {
+            const phone =
+                business.phone ||
+                business.Phone ||
+                "";
 
-            imageHTML = `
-                <div class="business-image-placeholder">
-                    🏢
+            const price =
+                business.price ??
+                business.Price ??
+                "";
+
+            const id =
+                getBusinessId(business);
+
+
+            return `
+                <div class="business-card">
+
+                    ${
+                        image
+                        ?
+                        `
+                        <img
+                            class="business-card-image"
+                            src="${escapeHTML(image)}"
+                            alt="${escapeHTML(name)}"
+                        >
+                        `
+                        :
+                        ""
+                    }
+
+                    <div class="business-card-content">
+
+                        <h3>
+                            ${escapeHTML(name)}
+                        </h3>
+
+                        ${
+                            description
+                            ?
+                            `
+                            <div class="business-description">
+                                ${escapeHTML(description)}
+                            </div>
+                            `
+                            :
+                            ""
+                        }
+
+                        ${
+                            address
+                            ?
+                            `
+                            <div class="business-address">
+                                📍 ${escapeHTML(address)}
+                            </div>
+                            `
+                            :
+                            ""
+                        }
+
+                        ${
+                            price
+                            ?
+                            `
+                            <div class="business-price">
+                                💰 ${escapeHTML(price)}
+                            </div>
+                            `
+                            :
+                            ""
+                        }
+
+                        <button
+                            class="details-button"
+                            data-business-id="${escapeHTML(id)}"
+                        >
+                            ${t.details}
+                        </button>
+
+                    </div>
+
                 </div>
             `;
 
-        }
+        }).join("");
 
-        card.innerHTML = `
 
-            ${imageHTML}
+    /*
+        Кнопки "Подробнее"
+    */
 
-            <div class="business-content">
+    document
+        .querySelectorAll(".details-button")
+        .forEach(button => {
 
-                <div class="business-name">
-                    ${business.name || t.noName}
-                </div>
+            button.addEventListener(
+                "click",
+                () => {
 
-                ${
-                    business.description
-                    ? `
-                        <div class="business-description">
-                            ${business.description}
-                        </div>
-                    `
-                    : ""
+                    const id =
+                        button.dataset.businessId;
+
+                    const business =
+                        allBusinesses.find(item =>
+                            String(getBusinessId(item))
+                            === String(id)
+                        );
+
+                    if (!business) {
+                        return;
+                    }
+
+                    /*
+                        Сохраняем позицию,
+                        где пользователь был
+                        в списке.
+                    */
+                    savedScrollPosition =
+                        window.scrollY;
+
+                    renderBusinessDetails(
+                        business,
+                        true
+                    );
+
                 }
+            );
 
-                ${
-                    business.address
-                    ? `
-                        <div class="business-info">
-                            📍 ${business.address}
-                        </div>
-                    `
-                    : ""
-                }
-
-                ${
-                    business.phone
-                    ? `
-                        <div class="business-info">
-                            📞 ${business.phone}
-                        </div>
-                    `
-                    : ""
-                }
-
-                ${
-                    business.price
-                    ? `
-                        <div class="business-info">
-                            💰 ${business.price}
-                        </div>
-                    `
-                    : ""
-                }
-
-                <div
-                    class="details-button"
-                    data-id="${business.id}"
-                >
-                    ${t.details}
-                </div>
-
-            </div>
-        `;
-
-        const detailsButton =
-            card.querySelector(".details-button");
-
-        detailsButton.addEventListener(
-            "click",
-            function() {
-
-                openBusinessDetails(
-                    business.id
-                );
-
-            }
-        );
-
-        businessesList.appendChild(card);
-
-    });
+        });
 }
 
 
-function openBusinessDetails(id) {
+/* =========================
+   ПОДРОБНОСТИ ОБЪЯВЛЕНИЯ
+========================= */
 
-    const business =
-        allBusinesses.find(
-            item =>
-                String(item.id) === String(id)
-        );
+function renderBusinessDetails(
+    business,
+    scrollToTop = true
+) {
 
-    if (!business) {
-        return;
-    }
+    currentBusiness =
+        business;
 
     const t =
         translations[currentLanguage];
+
+
+    /*
+        Категория НЕ сбрасывается.
+        selectedCategory остаётся прежней.
+    */
+
+    const image =
+        business.image_url ||
+        business["Image URL"] ||
+        "";
+
+    const name =
+        business.name ||
+        business.Name ||
+        t.noName;
+
+    const description =
+        business.description ||
+        business.Description ||
+        "";
+
+    const address =
+        business.address ||
+        business.Address ||
+        "";
+
+    const phone =
+        business.phone ||
+        business.Phone ||
+        "";
+
+    const price =
+        business.price ??
+        business.Price ??
+        "";
+
+
+    /*
+        Скрываем список карточек.
+        Показываем подробности.
+    */
+
+    homeMessage.classList.add("hidden");
+
+    resultsTitle.classList.add("hidden");
+
+    businessesList.className =
+        "detail-view";
 
     backButton.style.display =
         "inline-block";
@@ -1273,564 +1473,259 @@ function openBusinessDetails(id) {
     addBusinessButton.style.display =
         "none";
 
-    resultsTitle.textContent =
-        business.name || t.noName;
-
-    let imageHTML = "";
-
-    if (business.image_url) {
-
-        imageHTML = `
-            <img
-                src="${business.image_url}"
-                alt="${business.name || t.noName}"
-            >
-        `;
-
-    }
-
-    businessesList.className = "";
 
     businessesList.innerHTML = `
 
-        <div class="detail-page">
+        <div class="detail-card">
 
-            ${imageHTML}
+            ${
+                image
+                ?
+                `
+                <img
+                    class="detail-image"
+                    src="${escapeHTML(image)}"
+                    alt="${escapeHTML(name)}"
+                >
+                `
+                :
+                ""
+            }
 
             <div class="detail-content">
 
-                <div class="detail-title">
-                    ${business.name || t.noName}
-                </div>
+                <h1>
+                    ${escapeHTML(name)}
+                </h1>
 
                 ${
-                    business.description
-                    ? `
-                        <div class="detail-description">
-                            ${business.description}
-                        </div>
+                    description
+                    ?
                     `
-                    : ""
-                }
-
-                ${
-                    business.address
-                    ? `
-                        <div class="detail-info">
-                            📍 ${business.address}
-                        </div>
-                    `
-                    : ""
-                }
-
-                ${
-                    business.phone
-                    ? `
-                        <div class="detail-info">
-                            📞 ${business.phone}
-                        </div>
-                    `
-                    : ""
-                }
-
-                ${
-                    business.price
-                    ? `
-                        <div class="detail-info">
-                            💰 ${business.price}
-                        </div>
-                    `
-                    : ""
-                }
-
-            </div>
-
-        </div>
-    `;
-}
-
-
-function showAddBusinessForm() {
-
-    const t =
-        translations[currentLanguage];
-
-    backButton.style.display =
-        "inline-block";
-
-    addBusinessButton.style.display =
-        "none";
-
-    resultsTitle.textContent =
-        t.formTitle;
-
-    businessesList.className = "";
-
-    businessesList.innerHTML = `
-
-        <div class="form-container">
-
-            <div class="form-title">
-                ${t.formTitle}
-            </div>
-
-            <form id="businessForm">
-
-                <div class="form-group">
-
-                    <label>
-                        ${t.name}
-                    </label>
-
-                    <input
-                        type="text"
-                        id="businessName"
-                        required
-                    >
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        ${t.category}
-                    </label>
-
-                    <select
-                        id="businessCategory"
-                        required
-                    >
-
-                        <option value="">
-                            ${t.category}
-                        </option>
-
-                        <option value="apartments">
-                            ${t.categoryNames.apartments}
-                        </option>
-
-                        <option value="car_rental">
-                            ${t.categoryNames.car_rental}
-                        </option>
-
-                        <option value="excursions">
-                            ${t.categoryNames.excursions}
-                        </option>
-
-                        <option value="restaurants">
-                            ${t.categoryNames.restaurants}
-                        </option>
-
-                        <option value="salons">
-                            ${t.categoryNames.salons}
-                        </option>
-
-                        <option value="psychology">
-                            ${t.categoryNames.psychology}
-                        </option>
-
-                        <option value="dentistry">
-                            ${t.categoryNames.dentistry}
-                        </option>
-
-                        <option value="cosmetology">
-                            ${t.categoryNames.cosmetology}
-                        </option>
-
-                    </select>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        ${t.description}
-                    </label>
-
-                    <textarea
-                        id="businessDescription"
-                    ></textarea>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        ${t.address}
-                    </label>
-
-                    <input
-                        type="text"
-                        id="businessAddress"
-                    >
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        ${t.phone}
-                    </label>
-
-                    <input
-                        type="text"
-                        id="businessPhone"
-                    >
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        ${t.price}
-                    </label>
-
-                    <input
-                        type="text"
-                        id="businessPrice"
-                        placeholder="100 GEL"
-                    >
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        ${t.image}
-                    </label>
-
-                    <input
-                        type="file"
-                        id="businessImage"
-                        class="file-input"
-                        accept="image/*"
-                    >
-
-                    <div
-                        class="photo-name"
-                        id="photoName"
-                    >
-                        ${t.photoHint}
+                    <div class="detail-description">
+                        ${escapeHTML(description)}
                     </div>
-
-                    <img
-                        id="photoPreview"
-                        class="photo-preview"
-                        alt="Preview"
-                    >
-
-                </div>
-
-                <button
-                    type="submit"
-                    class="form-submit"
-                    id="submitButton"
-                >
-                    ${t.submit}
-                </button>
-
-            </form>
-
-        </div>
-    `;
-
-    const imageInput =
-        document.getElementById("businessImage");
-
-    const photoPreview =
-        document.getElementById("photoPreview");
-
-    const photoName =
-        document.getElementById("photoName");
-
-    imageInput.addEventListener(
-        "change",
-        function() {
-
-            const file =
-                imageInput.files[0];
-
-            if (!file) {
-
-                photoPreview.style.display =
-                    "none";
-
-                photoName.textContent =
-                    t.photoHint;
-
-                return;
-            }
-
-            photoName.textContent =
-                file.name;
-
-            const reader =
-                new FileReader();
-
-            reader.onload =
-                function(event) {
-
-                    photoPreview.src =
-                        event.target.result;
-
-                    photoPreview.style.display =
-                        "block";
-
-                };
-
-            reader.readAsDataURL(file);
-
-        }
-    );
-
-    document
-        .getElementById("businessForm")
-        .addEventListener(
-            "submit",
-            submitBusinessForm
-        );
-}
-
-
-async function uploadBusinessImage(file) {
-
-    if (!file) {
-        return "";
-    }
-
-    const fileExtension =
-        file.name
-            .split(".")
-            .pop()
-            .toLowerCase();
-
-    const safeExtension =
-        fileExtension || "jpg";
-
-    const fileName =
-        Date.now() +
-        "-" +
-        Math.random()
-            .toString(36)
-            .substring(2, 10) +
-        "." +
-        safeExtension;
-
-    const filePath =
-        "businesses/" +
-        fileName;
-
-    const uploadResult =
-        await supabaseClient
-            .storage
-            .from("business-images")
-            .upload(
-                filePath,
-                file,
-                {
-                    cacheControl: "3600",
-                    upsert: false
+                    `
+                    :
+                    ""
                 }
-            );
 
-    if (uploadResult.error) {
+                <div class="detail-info">
 
-        console.error(
-            "Storage upload error:",
-            uploadResult.error
-        );
-
-        throw uploadResult.error;
-    }
-
-    const publicResult =
-        supabaseClient
-            .storage
-            .from("business-images")
-            .getPublicUrl(filePath);
-
-    return publicResult.data.publicUrl;
-}
-
-
-async function submitBusinessForm(event) {
-
-    event.preventDefault();
-
-    const submitButton =
-        document.getElementById("submitButton");
-
-    submitButton.disabled = true;
-
-    submitButton.textContent =
-        translations[currentLanguage].upload;
-
-    try {
-
-        const name =
-            document
-                .getElementById("businessName")
-                .value
-                .trim();
-
-        const category =
-            document
-                .getElementById("businessCategory")
-                .value;
-
-        const description =
-            document
-                .getElementById("businessDescription")
-                .value
-                .trim();
-
-        const address =
-            document
-                .getElementById("businessAddress")
-                .value
-                .trim();
-
-        const phone =
-            document
-                .getElementById("businessPhone")
-                .value
-                .trim();
-
-        const price =
-            document
-                .getElementById("businessPrice")
-                .value
-                .trim();
-
-        const imageInput =
-            document
-                .getElementById("businessImage");
-
-        const file =
-            imageInput.files[0];
-
-        let image_url = "";
-
-        if (file) {
-
-            image_url =
-                await uploadBusinessImage(file);
-
-        }
-
-        submitButton.textContent =
-            translations[currentLanguage].submit;
-
-        const result =
-            await supabaseClient
-                .from("businesses")
-                .insert([
-
-                    {
-                        name: name,
-                        category: category,
-                        description: description,
-                        address: address,
-                        phone: phone,
-                        price: price,
-                        image_url: image_url,
-                        status: "pending"
+                    ${
+                        address
+                        ?
+                        `
+                        <div>
+                            <strong>📍 ${escapeHTML(t.address)}:</strong>
+                            ${escapeHTML(address)}
+                        </div>
+                        `
+                        :
+                        ""
                     }
 
-                ]);
+                    ${
+                        phone
+                        ?
+                        `
+                        <div>
+                            <strong>📞 ${escapeHTML(t.phone)}:</strong>
+                            ${escapeHTML(phone)}
+                        </div>
+                        `
+                        :
+                        ""
+                    }
 
-        if (result.error) {
+                    ${
+                        price
+                        ?
+                        `
+                        <div>
+                            <strong>💰 ${escapeHTML(t.price)}:</strong>
+                            ${escapeHTML(price)}
+                        </div>
+                        `
+                        :
+                        ""
+                    }
 
-            console.error(
-                "Database error:",
-                result.error
-            );
-
-            throw result.error;
-        }
-
-        businessesList.className = "";
-
-        businessesList.innerHTML = `
-
-            <div class="success-message">
-
-                <h2>
-                    ✓
-                </h2>
-
-                <br>
-
-                ${translations[currentLanguage].success}
+                </div>
 
             </div>
 
-        `;
+        </div>
+    `;
+
+
+    /*
+        При входе в подробности
+        прокручиваем вверх,
+        чтобы пользователь увидел
+        начало объявления.
+    */
+
+    if (scrollToTop) {
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
     }
 
-    catch (error) {
-
-        console.error(error);
-
-        alert(
-            "Ошибка при отправке заявки. Проверьте Storage и права доступа."
-        );
-
-        submitButton.disabled = false;
-
-        submitButton.textContent =
-            translations[currentLanguage].submit;
-    }
 }
 
 
-categories.forEach(category => {
+/* =========================
+   НАЗАД ИЗ ПОДРОБНОСТЕЙ
+========================= */
 
-    category.addEventListener(
-        "click",
-        function() {
+backButton.addEventListener(
+    "click",
+    () => {
 
-            categories.forEach(
-                item =>
-                    item.classList.remove("active")
-            );
+        /*
+            Убираем режим подробностей.
+        */
 
-            category.classList.add("active");
+        currentBusiness = null;
 
-            selectedCategory =
-                category.dataset.category;
+        backButton.style.display =
+            "none";
 
-            backButton.style.display =
-                "inline-block";
+        addBusinessButton.style.display =
+            "block";
 
-            addBusinessButton.style.display =
-                "inline-block";
-
-            resultsTitle.textContent =
-                translations[currentLanguage]
-                    .categoryNames[
-                        selectedCategory
-                    ];
-
-            businessesList.className =
-                "businesses-list";
-
-            renderBusinesses();
-
-        }
-    );
-
-});
+        businessesList.className =
+            "businesses-list";
 
 
-searchInput.addEventListener(
+        /*
+            Самое главное:
+            selectedCategory НЕ сбрасываем.
+
+            Поэтому если пользователь был
+            в "Апартаментах", он возвращается
+            именно в "Апартаменты".
+        */
+
+        renderBusinesses();
+
+
+        /*
+            Возвращаем пользователя
+            примерно туда, где он был
+            перед нажатием "Подробнее".
+        */
+
+        setTimeout(() => {
+
+            window.scrollTo({
+                top: savedScrollPosition,
+                behavior: "instant"
+            });
+
+        }, 50);
+
+    }
+);
+
+
+/* =========================
+   КАТЕГОРИИ
+========================= */
+
+document
+    .querySelectorAll(".category")
+    .forEach(category => {
+
+        category.addEventListener(
+            "click",
+            () => {
+
+                /*
+                    Если были в подробностях,
+                    выходим из них.
+                */
+
+                currentBusiness = null;
+
+                selectedCategory =
+                    category.dataset.category;
+
+
+                /*
+                    Активная категория.
+                */
+
+                document
+                    .querySelectorAll(".category")
+                    .forEach(item => {
+
+                        item.classList.toggle(
+                            "active",
+                            item === category
+                        );
+
+                    });
+
+
+                backButton.style.display =
+                    "none";
+
+                addBusinessButton.style.display =
+                    "block";
+
+                addBusinessForm.classList.add(
+                    "hidden"
+                );
+
+
+                businessesList.className =
+                    "businesses-list";
+
+
+                renderBusinesses();
+
+
+                /*
+                    После выбора категории
+                    начинаем список сверху.
+                */
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+    });
+
+
+/* =========================
+   ПОИСК
+========================= */
+
+search.addEventListener(
     "input",
-    function() {
+    () => {
 
-        if (!selectedCategory) {
-            return;
-        }
+        /*
+            Если пользователь начинает искать
+            с главной — показываем результаты.
+        */
+
+        currentBusiness = null;
+
+        backButton.style.display =
+            "none";
+
+        businessesList.className =
+            "businesses-list";
 
         renderBusinesses();
 
@@ -1838,35 +1733,454 @@ searchInput.addEventListener(
 );
 
 
+/* =========================
+   ДОБАВИТЬ УСЛУГУ
+========================= */
+
 addBusinessButton.addEventListener(
     "click",
-    function() {
+    () => {
 
-        showAddBusinessForm();
+        currentBusiness = null;
+
+        homeMessage.classList.add(
+            "hidden"
+        );
+
+        resultsTitle.classList.add(
+            "hidden"
+        );
+
+        businessesList.innerHTML = "";
+
+        businessesList.className =
+            "businesses-list";
+
+        addBusinessForm.classList.remove(
+            "hidden"
+        );
+
+        addBusinessButton.style.display =
+            "none";
+
+        backButton.style.display =
+            "inline-block";
+
+        /*
+            Если категория уже выбрана,
+            автоматически ставим её
+            в форме.
+        */
+
+        if (selectedCategory) {
+
+            document.getElementById(
+                "businessCategory"
+            ).value =
+                selectedCategory;
+
+        }
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
     }
 );
 
 
-backButton.addEventListener(
-    "click",
-    function() {
+/* =========================
+   ПРЕВЬЮ ФОТО
+========================= */
 
-        showHome();
+imageInput.addEventListener(
+    "change",
+    () => {
+
+        const file =
+            imageInput.files[0];
+
+        if (!file) {
+
+            imagePreview.innerHTML =
+                "";
+
+            return;
+        }
+
+
+        if (file.size > 10 * 1024 * 1024) {
+
+            alert(
+                "Фото должно быть не больше 10 МБ."
+            );
+
+            imageInput.value = "";
+
+            imagePreview.innerHTML =
+                "";
+
+            return;
+        }
+
+
+        const imageURL =
+            URL.createObjectURL(file);
+
+
+        imagePreview.innerHTML = `
+            <img
+                src="${imageURL}"
+                alt=""
+            >
+        `;
 
     }
 );
 
 
-logo.addEventListener(
-    "click",
-    function() {
+/* =========================
+   ОТПРАВКА ФОРМЫ
+========================= */
 
-        showHome();
+businessForm.addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+
+        const t =
+            translations[currentLanguage];
+
+        const submitButton =
+            document.getElementById(
+                "formSubmit"
+            );
+
+
+        const name =
+            document.getElementById(
+                "businessName"
+            ).value.trim();
+
+        const category =
+            document.getElementById(
+                "businessCategory"
+            ).value;
+
+        const description =
+            document.getElementById(
+                "businessDescription"
+            ).value.trim();
+
+        const address =
+            document.getElementById(
+                "businessAddress"
+            ).value.trim();
+
+        const phone =
+            document.getElementById(
+                "businessPhone"
+            ).value.trim();
+
+        const price =
+            document.getElementById(
+                "businessPrice"
+            ).value.trim();
+
+        const imageFile =
+            document.getElementById(
+                "businessImage"
+            ).files[0];
+
+
+        /*
+            Проверка размера фотографии.
+        */
+
+        if (
+            imageFile &&
+            imageFile.size > 10 * 1024 * 1024
+        ) {
+
+            alert(
+                "Фото должно быть не больше 10 МБ."
+            );
+
+            return;
+        }
+
+
+        submitButton.disabled =
+            true;
+
+        submitButton.textContent =
+            t.uploading;
+
+
+        let image_url = "";
+
+        let uploadedPath = "";
+
+
+        try {
+
+            /*
+                =========================
+                ЗАГРУЗКА ФОТО
+                =========================
+            */
+
+            if (imageFile) {
+
+                const safeName =
+                    imageFile.name
+                        .replace(
+                            /[^a-zA-Z0-9._-]/g,
+                            "_"
+                        );
+
+
+                uploadedPath =
+                    `${Date.now()}_${Math.random()
+                    .toString(36)
+                    .slice(2)}_${safeName}`;
+
+
+                const uploadResult =
+                    await supabaseClient
+                        .storage
+                        .from("business-images")
+                        .upload(
+                            uploadedPath,
+                            imageFile,
+                            {
+                                cacheControl: "3600",
+                                upsert: false
+                            }
+                        );
+
+
+                if (uploadResult.error) {
+
+                    console.error(
+                        uploadResult.error
+                    );
+
+                    throw new Error(
+                        "Ошибка загрузки фотографии."
+                    );
+                }
+
+
+                const publicResult =
+                    supabaseClient
+                        .storage
+                        .from("business-images")
+                        .getPublicUrl(
+                            uploadedPath
+                        );
+
+
+                image_url =
+                    publicResult.data.publicUrl;
+            }
+
+
+            /*
+                =========================
+                СОЗДАНИЕ ЗАЯВКИ
+                =========================
+            */
+
+            const insertResult =
+                await supabaseClient
+                    .from("businesses")
+                    .insert([
+                        {
+                            name:
+                                name,
+
+                            category:
+                                category,
+
+                            description:
+                                description,
+
+                            address:
+                                address,
+
+                            phone:
+                                phone,
+
+                            price:
+                                price,
+
+                            image_url:
+                                image_url,
+
+                            status:
+                                "pending"
+                        }
+                    ]);
+
+
+            if (insertResult.error) {
+
+                /*
+                    Если объявление не создалось,
+                    удаляем уже загруженную
+                    фотографию.
+                */
+
+                if (uploadedPath) {
+
+                    await supabaseClient
+                        .storage
+                        .from("business-images")
+                        .remove([
+                            uploadedPath
+                        ]);
+                }
+
+
+                console.error(
+                    insertResult.error
+                );
+
+                throw new Error(
+                    insertResult.error.message
+                );
+            }
+
+
+            /*
+                =========================
+                УСПЕШНО
+                =========================
+            */
+
+            alert(
+                t.success
+            );
+
+
+            businessForm.reset();
+
+            imagePreview.innerHTML =
+                "";
+
+
+            addBusinessForm.classList.add(
+                "hidden"
+            );
+
+            backButton.style.display =
+                "none";
+
+            addBusinessButton.style.display =
+                "block";
+
+
+            /*
+                Возвращаем пользователя
+                туда, где он был.
+            */
+
+            renderBusinesses();
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert(
+                error.message ||
+                "Произошла ошибка."
+            );
+
+        } finally {
+
+            submitButton.disabled =
+                false;
+
+            submitButton.textContent =
+                t.submit;
+
+        }
 
     }
 );
 
+
+/* =========================
+   ЛОГОТИП
+========================= */
+
+document
+    .getElementById("logo")
+    .addEventListener(
+        "click",
+        () => {
+
+            /*
+                Возвращаемся именно
+                на главную.
+            */
+
+            currentBusiness = null;
+
+            selectedCategory = "";
+
+            search.value = "";
+
+            document
+                .querySelectorAll(".category")
+                .forEach(category => {
+
+                    category.classList.remove(
+                        "active"
+                    );
+
+                });
+
+
+            addBusinessForm.classList.add(
+                "hidden"
+            );
+
+            addBusinessButton.style.display =
+                "block";
+
+            backButton.style.display =
+                "none";
+
+            businessesList.className =
+                "businesses-list";
+
+            renderBusinesses();
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+    );
+
+
+/* =========================
+   ЯЗЫКИ
+========================= */
 
 document
     .querySelectorAll(".language-button")
@@ -1874,7 +2188,7 @@ document
 
         button.addEventListener(
             "click",
-            function() {
+            () => {
 
                 changeLanguage(
                     button.dataset.language
@@ -1885,6 +2199,10 @@ document
 
     });
 
+
+/* =========================
+   СТАРТ
+========================= */
 
 changeLanguage("ru");
 
