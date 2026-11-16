@@ -14,34 +14,11 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             min-height: 100vh;
             background:
-                radial-gradient(
-                    circle at 0% 0%,
-                    #feda75 0%,
-                    transparent 28%
-                ),
-                radial-gradient(
-                    circle at 100% 0%,
-                    #fa7e1e 0%,
-                    transparent 32%
-                ),
-                radial-gradient(
-                    circle at 0% 100%,
-                    #d62976 0%,
-                    transparent 38%
-                ),
-                radial-gradient(
-                    circle at 100% 100%,
-                    #962fbf 0%,
-                    transparent 40%
-                ),
-                linear-gradient(
-                    135deg,
-                    #feda75 0%,
-                    #fa7e1e 25%,
-                    #d62976 50%,
-                    #962fbf 75%,
-                    #4f5bd5 100%
-                );
+                radial-gradient(circle at 0% 0%, #feda75 0%, transparent 28%),
+                radial-gradient(circle at 100% 0%, #fa7e1e 0%, transparent 32%),
+                radial-gradient(circle at 0% 100%, #d62976 0%, transparent 38%),
+                radial-gradient(circle at 100% 100%, #962fbf 0%, transparent 40%),
+                linear-gradient(135deg, #feda75 0%, #fa7e1e 25%, #d62976 50%, #962fbf 75%, #4f5bd5 100%);
             color: #2d1838;
         }
         header {
@@ -113,8 +90,7 @@
             color: #35143f;
             font-size: 15px;
             outline: none;
-            box-shadow:
-                0 8px 25px rgba(80, 20, 100, 0.18);
+            box-shadow: 0 8px 25px rgba(80, 20, 100, 0.18);
         }
         .search-input::placeholder {
             color: #927f9b;
@@ -126,10 +102,7 @@
         }
         .categories {
             display: grid;
-            grid-template-columns: repeat(
-                auto-fit,
-                minmax(145px, 1fr)
-            );
+            grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
             gap: 12px;
         }
         .category {
@@ -147,8 +120,7 @@
             cursor: pointer;
             font-size: 14px;
             font-weight: 600;
-            box-shadow:
-                0 7px 20px rgba(100, 30, 120, 0.13);
+            box-shadow: 0 7px 20px rgba(100, 30, 120, 0.13);
             transition:
                 transform 0.2s ease,
                 box-shadow 0.2s ease,
@@ -156,8 +128,7 @@
         }
         .category:hover {
             transform: translateY(-2px);
-            box-shadow:
-                0 10px 25px rgba(120, 30, 130, 0.22);
+            box-shadow: 0 10px 25px rgba(120, 30, 130, 0.22);
         }
         .category.active {
             background:
@@ -168,8 +139,7 @@
                     #d62976
                 );
             color: white;
-            box-shadow:
-                0 8px 25px rgba(150, 47, 191, 0.35);
+            box-shadow: 0 8px 25px rgba(150, 47, 191, 0.35);
         }
         .results-section {
             margin-top: 30px;
@@ -179,16 +149,11 @@
             font-size: 23px;
             font-weight: 750;
             margin-bottom: 16px;
-            text-shadow:
-                0 2px 10px rgba(70, 20, 90, 0.25);
+            text-shadow: 0 2px 10px rgba(70, 20, 90, 0.25);
         }
         .businesses-list {
             display: grid;
-            grid-template-columns:
-                repeat(
-                    auto-fit,
-                    minmax(280px, 1fr)
-                );
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 18px;
         }
         .business-card {
@@ -201,8 +166,7 @@
                 );
             border: 1px solid rgba(255,255,255,0.75);
             border-radius: 20px;
-            box-shadow:
-                0 12px 35px rgba(90, 20, 110, 0.20);
+            box-shadow: 0 12px 35px rgba(90, 20, 110, 0.20);
         }
         .business-image {
             width: 100%;
@@ -250,6 +214,7 @@
             margin-top: 16px;
             display: inline-block;
             padding: 10px 16px;
+            border: none;
             border-radius: 12px;
             background:
                 linear-gradient(
@@ -261,8 +226,9 @@
             color: white;
             font-size: 14px;
             font-weight: 650;
-            box-shadow:
-                0 5px 15px rgba(150, 47, 191, 0.25);
+            box-shadow: 0 5px 15px rgba(150, 47, 191, 0.25);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         .details-button:hover {
             background:
@@ -272,6 +238,7 @@
                     #d62976,
                     #fa7e1e
                 );
+            transform: translateY(-1px);
         }
         .empty-state {
             padding: 35px 20px;
@@ -279,14 +246,147 @@
             background: rgba(255,255,255,0.88);
             border-radius: 18px;
             color: #704f7b;
-            box-shadow:
-                0 10px 25px rgba(100, 30, 120, 0.15);
+            box-shadow: 0 10px 25px rgba(100, 30, 120, 0.15);
         }
         .loading {
             text-align: center;
             padding: 30px;
             color: white;
             font-size: 15px;
+        }
+        /* =========================
+           ОКНО ПОДРОБНОЙ ИНФОРМАЦИИ
+           ========================= */
+        .details-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .details-modal.active {
+            display: flex;
+        }
+        .details-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(35, 10, 45, 0.68);
+            backdrop-filter: blur(6px);
+        }
+        .details-window {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 520px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.98),
+                    rgba(255,240,249,0.98)
+                );
+            border-radius: 24px;
+            box-shadow: 0 25px 70px rgba(40, 10, 60, 0.45);
+            animation: detailsOpen 0.22s ease;
+        }
+        @keyframes detailsOpen {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .details-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            z-index: 5;
+            width: 38px;
+            height: 38px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            color: #522060;
+            font-size: 26px;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(80, 20, 100, 0.18);
+        }
+        .details-close:hover {
+            background: white;
+        }
+        .details-image {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+        }
+        .details-image-placeholder {
+            width: 100%;
+            height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f5bd5,
+                    #962fbf,
+                    #d62976,
+                    #fa7e1e
+                );
+        }
+        .details-body {
+            padding: 24px;
+        }
+        .details-category {
+            display: inline-block;
+            padding: 7px 11px;
+            border-radius: 10px;
+            background: rgba(150, 47, 191, 0.10);
+            color: #7a318f;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .details-title {
+            color: #4f1d67;
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .details-description {
+            color: #654c70;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+        .details-info {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            color: #5f4670;
+            font-size: 15px;
+            line-height: 1.45;
+            margin-top: 12px;
+        }
+        .details-info-icon {
+            flex: 0 0 auto;
+        }
+        .details-phone {
+            color: #7b2694;
+            text-decoration: none;
+            font-weight: 650;
+        }
+        .details-phone:hover {
+            text-decoration: underline;
         }
         @media (max-width: 600px) {
             header {
@@ -299,11 +399,24 @@
                 padding: 22px 15px 40px;
             }
             .categories {
-                grid-template-columns:
-                    repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
             .businesses-list {
                 grid-template-columns: 1fr;
+            }
+            .details-modal {
+                padding: 12px;
+            }
+            .details-window {
+                max-height: 92vh;
+                border-radius: 20px;
+            }
+            .details-image,
+            .details-image-placeholder {
+                height: 210px;
+            }
+            .details-title {
+                font-size: 23px;
             }
         }
     </style>
@@ -363,46 +476,14 @@
             >
                 <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
                     <rect width="280" height="180" fill="#012169"/>
-                    <path
-                        d="M0 0 L32 0 L280 148 L280 180 L248 180 L0 32 Z"
-                        fill="#ffffff"
-                    />
-                    <path
-                        d="M280 0 L248 0 L0 148 L0 180 L32 180 L280 32 Z"
-                        fill="#ffffff"
-                    />
-                    <path
-                        d="M0 0 L12 0 L280 160 L280 180 L268 180 L0 20 Z"
-                        fill="#c8102e"
-                    />
-                    <path
-                        d="M280 0 L268 0 L0 160 L0 180 L12 180 L280 20 Z"
-                        fill="#c8102e"
-                    />
-                    <rect
-                        x="115"
-                        width="50"
-                        height="180"
-                        fill="#ffffff"
-                    />
-                    <rect
-                        y="65"
-                        width="280"
-                        height="50"
-                        fill="#ffffff"
-                    />
-                    <rect
-                        x="125"
-                        width="30"
-                        height="180"
-                        fill="#c8102e"
-                    />
-                    <rect
-                        y="75"
-                        width="280"
-                        height="30"
-                        fill="#c8102e"
-                    />
+                    <path d="M0 0 L32 0 L280 148 L280 180 L248 180 L0 32 Z" fill="#ffffff"/>
+                    <path d="M280 0 L248 0 L0 148 L0 180 L32 180 L280 32 Z" fill="#ffffff"/>
+                    <path d="M0 0 L12 0 L280 160 L280 180 L268 180 L0 20 Z" fill="#c8102e"/>
+                    <path d="M280 0 L268 0 L0 160 L0 180 L12 180 L280 20 Z" fill="#c8102e"/>
+                    <rect x="115" width="50" height="180" fill="#ffffff"/>
+                    <rect y="65" width="280" height="50" fill="#ffffff"/>
+                    <rect x="125" width="30" height="180" fill="#c8102e"/>
+                    <rect y="75" width="280" height="30" fill="#c8102e"/>
                 </svg>
             </button>
         </div>
@@ -495,6 +576,25 @@
         ></div>
     </div>
 </main>
+<!-- =========================
+     МОДАЛЬНОЕ ОКНО
+     ========================= -->
+<div id="detailsModal" class="details-modal">
+    <div
+        id="detailsOverlay"
+        class="details-overlay"
+    ></div>
+    <div class="details-window">
+        <button
+            id="closeDetails"
+            class="details-close"
+            aria-label="Close"
+        >
+            ×
+        </button>
+        <div id="detailsContent"></div>
+    </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
     const SUPABASE_URL =
@@ -530,6 +630,22 @@
         document.getElementById(
             "resultsTitle"
         );
+    const detailsModal =
+        document.getElementById(
+            "detailsModal"
+        );
+    const detailsOverlay =
+        document.getElementById(
+            "detailsOverlay"
+        );
+    const closeDetails =
+        document.getElementById(
+            "closeDetails"
+        );
+    const detailsContent =
+        document.getElementById(
+            "detailsContent"
+        );
     let allBusinesses = [];
     let selectedCategory = "";
     let currentLanguage = "ru";
@@ -554,6 +670,10 @@
                 "Подробнее →",
             noName:
                 "Без названия",
+            address:
+                "Адрес",
+            phone:
+                "Телефон",
             categories: {
                 apartments:
                     "Апартаменты",
@@ -596,6 +716,10 @@
                 "დეტალურად →",
             noName:
                 "სახელის გარეშე",
+            address:
+                "მისამართი",
+            phone:
+                "ტელეფონი",
             categories: {
                 apartments:
                     "აპარტამენტები",
@@ -638,6 +762,10 @@
                 "Details →",
             noName:
                 "No name",
+            address:
+                "Address",
+            phone:
+                "Phone",
             categories: {
                 apartments:
                     "Apartments",
@@ -869,9 +997,13 @@
                             `
                             : ""
                         }
-                        <div class="details-button">
+                        <button
+                            type="button"
+                            class="details-button"
+                            data-business-id="${business.id}"
+                        >
                             ${t.details}
-                        </div>
+                        </button>
                     </div>
                 `;
                 businessesList.appendChild(
@@ -880,6 +1012,161 @@
             }
         );
     }
+    /* =========================
+       ОТКРЫТИЕ ПОДРОБНОСТЕЙ
+       ========================= */
+    function openBusinessDetails(business) {
+        const t =
+            translations[currentLanguage];
+        const categoryKey =
+            String(
+                business.category || ""
+            )
+            .trim()
+            .toLowerCase();
+        const categoryName =
+            t.categories[categoryKey] ||
+            business.category ||
+            "";
+        let imageHTML;
+        if (business.image_url) {
+            imageHTML = `
+                <img
+                    class="details-image"
+                    src="${business.image_url}"
+                    alt="${business.name || t.noName}"
+                >
+            `;
+        } else {
+            imageHTML = `
+                <div class="details-image-placeholder">
+                    🏢
+                </div>
+            `;
+        }
+        detailsContent.innerHTML = `
+            ${imageHTML}
+            <div class="details-body">
+                ${
+                    categoryName
+                    ? `
+                        <div class="details-category">
+                            ${categoryName}
+                        </div>
+                    `
+                    : ""
+                }
+                <div class="details-title">
+                    ${business.name || t.noName}
+                </div>
+                ${
+                    business.description
+                    ? `
+                        <div class="details-description">
+                            ${business.description}
+                        </div>
+                    `
+                    : ""
+                }
+                ${
+                    business.address
+                    ? `
+                        <div class="details-info">
+                            <span class="details-info-icon">📍</span>
+                            <div>
+                                <strong>${t.address}:</strong><br>
+                                ${business.address}
+                            </div>
+                        </div>
+                    `
+                    : ""
+                }
+                ${
+                    business.phone
+                    ? `
+                        <div class="details-info">
+                            <span class="details-info-icon">📞</span>
+                            <div>
+                                <strong>${t.phone}:</strong><br>
+                                <a
+                                    class="details-phone"
+                                    href="tel:${business.phone}"
+                                >
+                                    ${business.phone}
+                                </a>
+                            </div>
+                        </div>
+                    `
+                    : ""
+                }
+            </div>
+        `;
+        detailsModal.classList.add(
+            "active"
+        );
+        document.body.style.overflow =
+            "hidden";
+    }
+    /* =========================
+       ЗАКРЫТИЕ ПОДРОБНОСТЕЙ
+       ========================= */
+    function closeBusinessDetails() {
+        detailsModal.classList.remove(
+            "active"
+        );
+        document.body.style.overflow =
+            "";
+    }
+    closeDetails.addEventListener(
+        "click",
+        closeBusinessDetails
+    );
+    detailsOverlay.addEventListener(
+        "click",
+        closeBusinessDetails
+    );
+    document.addEventListener(
+        "keydown",
+        function(event) {
+            if (
+                event.key === "Escape" &&
+                detailsModal.classList.contains(
+                    "active"
+                )
+            ) {
+                closeBusinessDetails();
+            }
+        }
+    );
+    /* =========================
+       КЛИК ПО «ПОДРОБНЕЕ»
+       ========================= */
+    businessesList.addEventListener(
+        "click",
+        function(event) {
+            const button =
+                event.target.closest(
+                    ".details-button"
+                );
+            if (!button) {
+                return;
+            }
+            const businessId =
+                button.dataset.businessId;
+            const business =
+                allBusinesses.find(
+                    function(item) {
+                        return String(item.id) ===
+                            String(businessId);
+                    }
+                );
+            if (business) {
+                openBusinessDetails(
+                    business
+                );
+            }
+        }
+    );
     /* =========================
        КАТЕГОРИИ
        ========================= */
