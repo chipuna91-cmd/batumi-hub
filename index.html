@@ -300,8 +300,6 @@
             color: white;
         }
 
-        /* ФОРМА */
-
         .form-container {
             max-width: 700px;
             margin: 0 auto;
@@ -347,6 +345,26 @@
             resize: vertical;
         }
 
+        .file-input {
+            padding: 10px !important;
+            cursor: pointer;
+        }
+
+        .photo-preview {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .photo-name {
+            margin-top: 8px;
+            color: #73577e;
+            font-size: 13px;
+        }
+
         .form-submit {
             width: 100%;
             border: none;
@@ -363,6 +381,11 @@
             font-size: 16px;
             font-weight: 800;
             cursor: pointer;
+        }
+
+        .form-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         .success-message {
@@ -450,19 +473,79 @@
 
         <div class="languages">
 
-            <!-- ГРУЗИНСКИЙ -->
-            <button class="language-button" data-language="ka">
-                🇬🇪
+            <!-- ФЛАГ ГРУЗИИ -->
+            <button
+                class="language-button"
+                title="ქართული"
+                aria-label="ქართული"
+                data-language="ka"
+            >
+                <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="280" height="180" fill="#ffffff"/>
+                    <rect x="132" y="0" width="16" height="180" fill="#d40000"/>
+                    <rect x="0" y="82" width="280" height="16" fill="#d40000"/>
+                    <g fill="#d40000">
+                        <rect x="45" y="24" width="10" height="52"/>
+                        <rect x="24" y="45" width="52" height="10"/>
+                        <rect x="225" y="24" width="10" height="52"/>
+                        <rect x="204" y="45" width="52" height="10"/>
+                        <rect x="45" y="104" width="10" height="52"/>
+                        <rect x="24" y="125" width="52" height="10"/>
+                        <rect x="225" y="104" width="10" height="52"/>
+                        <rect x="204" y="125" width="52" height="10"/>
+                    </g>
+                </svg>
             </button>
 
-            <!-- РУССКИЙ -->
-            <button class="language-button" data-language="ru">
-                🇷🇺
+            <!-- ФЛАГ РОССИИ -->
+            <button
+                class="language-button"
+                title="Русский"
+                aria-label="Русский"
+                data-language="ru"
+            >
+                <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="280" height="60" fill="#ffffff"/>
+                    <rect y="60" width="280" height="60" fill="#0052b4"/>
+                    <rect y="120" width="280" height="60" fill="#d80027"/>
+                </svg>
             </button>
 
-            <!-- АНГЛИЙСКИЙ -->
-            <button class="language-button" data-language="en">
-                🇬🇧
+            <!-- ФЛАГ ВЕЛИКОБРИТАНИИ -->
+            <button
+                class="language-button"
+                title="English"
+                aria-label="English"
+                data-language="en"
+            >
+                <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="280" height="180" fill="#012169"/>
+
+                    <path
+                        d="M0 0 L32 0 L280 148 L280 180 L248 180 L0 32 Z"
+                        fill="#ffffff"
+                    />
+
+                    <path
+                        d="M280 0 L248 0 L0 148 L0 180 L32 180 L280 32 Z"
+                        fill="#ffffff"
+                    />
+
+                    <path
+                        d="M0 0 L12 0 L280 160 L280 180 L268 180 L0 20 Z"
+                        fill="#c8102e"
+                    />
+
+                    <path
+                        d="M280 0 L268 0 L0 160 L0 180 L12 180 L280 20 Z"
+                        fill="#c8102e"
+                    />
+
+                    <rect x="115" width="50" height="180" fill="#ffffff"/>
+                    <rect y="65" width="280" height="50" fill="#ffffff"/>
+                    <rect x="125" width="30" height="180" fill="#c8102e"/>
+                    <rect y="75" width="280" height="30" fill="#c8102e"/>
+                </svg>
             </button>
 
         </div>
@@ -479,10 +562,7 @@
     </div>
 </header>
 
-
 <main>
-
-    <!-- КАТЕГОРИИ -->
 
     <div class="categories">
 
@@ -520,9 +600,6 @@
 
     </div>
 
-
-    <!-- РЕЗУЛЬТАТЫ -->
-
     <div class="results-section">
 
         <div class="top-actions">
@@ -548,7 +625,7 @@
             class="results-title"
             id="resultsTitle"
         >
-            Бизнесы
+            Выберите категорию
         </div>
 
         <div
@@ -559,7 +636,6 @@
     </div>
 
 </main>
-
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -576,7 +652,6 @@ const supabaseClient =
         SUPABASE_URL,
         SUPABASE_KEY
     );
-
 
 const businessesList =
     document.getElementById("businessesList");
@@ -602,17 +677,12 @@ const logo =
 const subtitle =
     document.getElementById("subtitle");
 
-
 let allBusinesses = [];
 
 let selectedCategory = "";
 
 let currentLanguage = "ru";
 
-
-/* =========================
-   ПЕРЕВОДЫ
-========================= */
 
 const translations = {
 
@@ -623,6 +693,9 @@ const translations = {
 
         searchPlaceholder:
             "Поиск бизнеса или услуги...",
+
+        chooseCategory:
+            "Выберите категорию",
 
         businesses:
             "Бизнесы",
@@ -667,7 +740,13 @@ const translations = {
             "Цена",
 
         image:
-            "Ссылка на фото",
+            "Фотография",
+
+        photoHint:
+            "Можно выбрать фотографию с телефона.",
+
+        upload:
+            "Загружаем фотографию...",
 
         submit:
             "Отправить на проверку",
@@ -703,7 +782,6 @@ const translations = {
         }
     },
 
-
     ka: {
 
         subtitle:
@@ -711,6 +789,9 @@ const translations = {
 
         searchPlaceholder:
             "მოძებნეთ ბიზნესი ან სერვისი...",
+
+        chooseCategory:
+            "აირჩიეთ კატეგორია",
 
         businesses:
             "ბიზნესები",
@@ -755,7 +836,13 @@ const translations = {
             "ფასი",
 
         image:
-            "ფოტოს ბმული",
+            "ფოტო",
+
+        photoHint:
+            "შეგიძლიათ ფოტო ტელეფონიდან აირჩიოთ.",
+
+        upload:
+            "ფოტო იტვირთება...",
 
         submit:
             "შემოწმებაზე გაგზავნა",
@@ -791,7 +878,6 @@ const translations = {
         }
     },
 
-
     en: {
 
         subtitle:
@@ -799,6 +885,9 @@ const translations = {
 
         searchPlaceholder:
             "Search for a business or service...",
+
+        chooseCategory:
+            "Choose a category",
 
         businesses:
             "Businesses",
@@ -843,7 +932,13 @@ const translations = {
             "Price",
 
         image:
-            "Photo URL",
+            "Photo",
+
+        photoHint:
+            "You can choose a photo from your phone.",
+
+        upload:
+            "Uploading photo...",
 
         submit:
             "Send for review",
@@ -882,9 +977,30 @@ const translations = {
 };
 
 
-/* =========================
-   ЯЗЫК
-========================= */
+function showHome() {
+
+    selectedCategory = "";
+
+    categories.forEach(
+        category =>
+            category.classList.remove("active")
+    );
+
+    backButton.style.display =
+        "none";
+
+    addBusinessButton.style.display =
+        "inline-block";
+
+    resultsTitle.textContent =
+        translations[currentLanguage].chooseCategory;
+
+    businessesList.className =
+        "businesses-list";
+
+    businessesList.innerHTML = "";
+}
+
 
 function changeLanguage(language) {
 
@@ -925,21 +1041,22 @@ function changeLanguage(language) {
 
     });
 
-    renderBusinesses();
+    if (selectedCategory) {
+
+        resultsTitle.textContent =
+            t.categoryNames[selectedCategory];
+
+        renderBusinesses();
+
+    } else {
+
+        showHome();
+
+    }
 }
 
 
-/* =========================
-   ЗАГРУЗКА
-========================= */
-
 async function loadBusinesses() {
-
-    businessesList.innerHTML = `
-        <div class="loading">
-            ${translations[currentLanguage].loading}
-        </div>
-    `;
 
     const result =
         await supabaseClient
@@ -951,38 +1068,34 @@ async function loadBusinesses() {
 
         console.error(result.error);
 
-        businessesList.innerHTML = `
-            <div class="empty-state">
-                Ошибка загрузки объявлений.
-            </div>
-        `;
-
         return;
     }
 
     allBusinesses =
         result.data || [];
 
-    renderBusinesses();
+    showHome();
 }
 
-
-/* =========================
-   КАРТОЧКИ
-========================= */
 
 function renderBusinesses() {
 
     const t =
         translations[currentLanguage];
 
+    if (!selectedCategory) {
+
+        showHome();
+
+        return;
+    }
+
     const searchText =
         searchInput.value
             .trim()
             .toLowerCase();
 
-
-    let filtered =
+    const filtered =
         allBusinesses.filter(business => {
 
             const category =
@@ -992,11 +1105,8 @@ function renderBusinesses() {
                 .trim()
                 .toLowerCase();
 
-
             const matchesCategory =
-                !selectedCategory ||
                 category === selectedCategory;
-
 
             const text =
                 (
@@ -1008,11 +1118,9 @@ function renderBusinesses() {
                 )
                 .toLowerCase();
 
-
             const matchesSearch =
                 !searchText ||
                 text.includes(searchText);
-
 
             return (
                 matchesCategory &&
@@ -1021,9 +1129,7 @@ function renderBusinesses() {
 
         });
 
-
     businessesList.innerHTML = "";
-
 
     if (filtered.length === 0) {
 
@@ -1036,7 +1142,6 @@ function renderBusinesses() {
         return;
     }
 
-
     filtered.forEach(business => {
 
         const card =
@@ -1044,7 +1149,6 @@ function renderBusinesses() {
 
         card.className =
             "business-card";
-
 
         let imageHTML;
 
@@ -1067,7 +1171,6 @@ function renderBusinesses() {
             `;
 
         }
-
 
         card.innerHTML = `
 
@@ -1129,10 +1232,8 @@ function renderBusinesses() {
             </div>
         `;
 
-
         const detailsButton =
             card.querySelector(".details-button");
-
 
         detailsButton.addEventListener(
             "click",
@@ -1145,16 +1246,11 @@ function renderBusinesses() {
             }
         );
 
-
         businessesList.appendChild(card);
 
     });
 }
 
-
-/* =========================
-   ДЕТАЛЬНАЯ СТРАНИЦА
-========================= */
 
 function openBusinessDetails(id) {
 
@@ -1164,36 +1260,21 @@ function openBusinessDetails(id) {
                 String(item.id) === String(id)
         );
 
-
     if (!business) {
         return;
     }
 
-
     const t =
         translations[currentLanguage];
-
-
-    categories.forEach(
-        category =>
-            category.classList.remove("active")
-    );
-
-
-    selectedCategory = "";
-
 
     backButton.style.display =
         "inline-block";
 
-
     addBusinessButton.style.display =
         "none";
 
-
     resultsTitle.textContent =
         business.name || t.noName;
-
 
     let imageHTML = "";
 
@@ -1208,9 +1289,7 @@ function openBusinessDetails(id) {
 
     }
 
-
     businessesList.className = "";
-
 
     businessesList.innerHTML = `
 
@@ -1268,34 +1347,24 @@ function openBusinessDetails(id) {
 
         </div>
     `;
-
 }
 
-
-/* =========================
-   ФОРМА ДОБАВЛЕНИЯ
-========================= */
 
 function showAddBusinessForm() {
 
     const t =
         translations[currentLanguage];
 
-
     backButton.style.display =
         "inline-block";
-
 
     addBusinessButton.style.display =
         "none";
 
-
     resultsTitle.textContent =
         t.formTitle;
 
-
     businessesList.className = "";
-
 
     businessesList.innerHTML = `
 
@@ -1304,7 +1373,6 @@ function showAddBusinessForm() {
             <div class="form-title">
                 ${t.formTitle}
             </div>
-
 
             <form id="businessForm">
 
@@ -1321,7 +1389,6 @@ function showAddBusinessForm() {
                     >
 
                 </div>
-
 
                 <div class="form-group">
 
@@ -1374,7 +1441,6 @@ function showAddBusinessForm() {
 
                 </div>
 
-
                 <div class="form-group">
 
                     <label>
@@ -1386,7 +1452,6 @@ function showAddBusinessForm() {
                     ></textarea>
 
                 </div>
-
 
                 <div class="form-group">
 
@@ -1401,7 +1466,6 @@ function showAddBusinessForm() {
 
                 </div>
 
-
                 <div class="form-group">
 
                     <label>
@@ -1414,7 +1478,6 @@ function showAddBusinessForm() {
                     >
 
                 </div>
-
 
                 <div class="form-group">
 
@@ -1430,7 +1493,6 @@ function showAddBusinessForm() {
 
                 </div>
 
-
                 <div class="form-group">
 
                     <label>
@@ -1438,17 +1500,31 @@ function showAddBusinessForm() {
                     </label>
 
                     <input
-                        type="url"
+                        type="file"
                         id="businessImage"
-                        placeholder="https://..."
+                        class="file-input"
+                        accept="image/*"
+                    >
+
+                    <div
+                        class="photo-name"
+                        id="photoName"
+                    >
+                        ${t.photoHint}
+                    </div>
+
+                    <img
+                        id="photoPreview"
+                        class="photo-preview"
+                        alt="Preview"
                     >
 
                 </div>
 
-
                 <button
                     type="submit"
                     class="form-submit"
+                    id="submitButton"
                 >
                     ${t.submit}
                 </button>
@@ -1458,6 +1534,54 @@ function showAddBusinessForm() {
         </div>
     `;
 
+    const imageInput =
+        document.getElementById("businessImage");
+
+    const photoPreview =
+        document.getElementById("photoPreview");
+
+    const photoName =
+        document.getElementById("photoName");
+
+    imageInput.addEventListener(
+        "change",
+        function() {
+
+            const file =
+                imageInput.files[0];
+
+            if (!file) {
+
+                photoPreview.style.display =
+                    "none";
+
+                photoName.textContent =
+                    t.photoHint;
+
+                return;
+            }
+
+            photoName.textContent =
+                file.name;
+
+            const reader =
+                new FileReader();
+
+            reader.onload =
+                function(event) {
+
+                    photoPreview.src =
+                        event.target.result;
+
+                    photoPreview.style.display =
+                        "block";
+
+                };
+
+            reader.readAsDataURL(file);
+
+        }
+    );
 
     document
         .getElementById("businessForm")
@@ -1468,118 +1592,198 @@ function showAddBusinessForm() {
 }
 
 
-/* =========================
-   СОХРАНЕНИЕ
-========================= */
+async function uploadBusinessImage(file) {
+
+    if (!file) {
+        return "";
+    }
+
+    const fileExtension =
+        file.name
+            .split(".")
+            .pop()
+            .toLowerCase();
+
+    const safeExtension =
+        fileExtension || "jpg";
+
+    const fileName =
+        Date.now() +
+        "-" +
+        Math.random()
+            .toString(36)
+            .substring(2, 10) +
+        "." +
+        safeExtension;
+
+    const filePath =
+        "businesses/" +
+        fileName;
+
+    const uploadResult =
+        await supabaseClient
+            .storage
+            .from("business-images")
+            .upload(
+                filePath,
+                file,
+                {
+                    cacheControl: "3600",
+                    upsert: false
+                }
+            );
+
+    if (uploadResult.error) {
+
+        console.error(
+            "Storage upload error:",
+            uploadResult.error
+        );
+
+        throw uploadResult.error;
+    }
+
+    const publicResult =
+        supabaseClient
+            .storage
+            .from("business-images")
+            .getPublicUrl(filePath);
+
+    return publicResult.data.publicUrl;
+}
+
 
 async function submitBusinessForm(event) {
 
     event.preventDefault();
 
+    const submitButton =
+        document.getElementById("submitButton");
 
-    const name =
-        document
-            .getElementById("businessName")
-            .value
-            .trim();
+    submitButton.disabled = true;
 
+    submitButton.textContent =
+        translations[currentLanguage].upload;
 
-    const category =
-        document
-            .getElementById("businessCategory")
-            .value;
+    try {
 
+        const name =
+            document
+                .getElementById("businessName")
+                .value
+                .trim();
 
-    const description =
-        document
-            .getElementById("businessDescription")
-            .value
-            .trim();
+        const category =
+            document
+                .getElementById("businessCategory")
+                .value;
 
+        const description =
+            document
+                .getElementById("businessDescription")
+                .value
+                .trim();
 
-    const address =
-        document
-            .getElementById("businessAddress")
-            .value
-            .trim();
+        const address =
+            document
+                .getElementById("businessAddress")
+                .value
+                .trim();
 
+        const phone =
+            document
+                .getElementById("businessPhone")
+                .value
+                .trim();
 
-    const phone =
-        document
-            .getElementById("businessPhone")
-            .value
-            .trim();
+        const price =
+            document
+                .getElementById("businessPrice")
+                .value
+                .trim();
 
+        const imageInput =
+            document
+                .getElementById("businessImage");
 
-    const price =
-        document
-            .getElementById("businessPrice")
-            .value
-            .trim();
+        const file =
+            imageInput.files[0];
 
+        let image_url = "";
 
-    const image_url =
-        document
-            .getElementById("businessImage")
-            .value
-            .trim();
+        if (file) {
 
+            image_url =
+                await uploadBusinessImage(file);
 
-    const result =
-        await supabaseClient
-            .from("businesses")
-            .insert([
+        }
 
-                {
-                    name: name,
-                    category: category,
-                    description: description,
-                    address: address,
-                    phone: phone,
-                    price: price,
-                    image_url: image_url,
-                    status: "pending"
-                }
+        submitButton.textContent =
+            translations[currentLanguage].submit;
 
-            ]);
+        const result =
+            await supabaseClient
+                .from("businesses")
+                .insert([
 
+                    {
+                        name: name,
+                        category: category,
+                        description: description,
+                        address: address,
+                        phone: phone,
+                        price: price,
+                        image_url: image_url,
+                        status: "pending"
+                    }
 
-    if (result.error) {
+                ]);
 
-        console.error(result.error);
+        if (result.error) {
 
-        alert(
-            "Ошибка при отправке заявки."
-        );
+            console.error(
+                "Database error:",
+                result.error
+            );
 
-        return;
+            throw result.error;
+        }
+
+        businessesList.className = "";
+
+        businessesList.innerHTML = `
+
+            <div class="success-message">
+
+                <h2>
+                    ✓
+                </h2>
+
+                <br>
+
+                ${translations[currentLanguage].success}
+
+            </div>
+
+        `;
+
     }
 
+    catch (error) {
 
-    businessesList.className = "";
+        console.error(error);
 
+        alert(
+            "Ошибка при отправке заявки. Проверьте Storage и права доступа."
+        );
 
-    businessesList.innerHTML = `
+        submitButton.disabled = false;
 
-        <div class="success-message">
-
-            <h2>
-                ✓
-            </h2>
-
-            <br>
-
-            ${translations[currentLanguage].success}
-
-        </div>
-
-    `;
+        submitButton.textContent =
+            translations[currentLanguage].submit;
+    }
 }
 
-
-/* =========================
-   КАТЕГОРИИ
-========================= */
 
 categories.forEach(category => {
 
@@ -1592,21 +1796,16 @@ categories.forEach(category => {
                     item.classList.remove("active")
             );
 
-
             category.classList.add("active");
-
 
             selectedCategory =
                 category.dataset.category;
 
-
             backButton.style.display =
                 "inline-block";
 
-
             addBusinessButton.style.display =
                 "inline-block";
-
 
             resultsTitle.textContent =
                 translations[currentLanguage]
@@ -1614,10 +1813,8 @@ categories.forEach(category => {
                         selectedCategory
                     ];
 
-
             businessesList.className =
                 "businesses-list";
-
 
             renderBusinesses();
 
@@ -1627,23 +1824,19 @@ categories.forEach(category => {
 });
 
 
-/* =========================
-   ПОИСК
-========================= */
-
 searchInput.addEventListener(
     "input",
     function() {
+
+        if (!selectedCategory) {
+            return;
+        }
 
         renderBusinesses();
 
     }
 );
 
-
-/* =========================
-   ДОБАВИТЬ УСЛУГУ
-========================= */
 
 addBusinessButton.addEventListener(
     "click",
@@ -1655,87 +1848,25 @@ addBusinessButton.addEventListener(
 );
 
 
-/* =========================
-   НАЗАД
-========================= */
-
 backButton.addEventListener(
     "click",
     function() {
 
-        selectedCategory = "";
-
-        categories.forEach(
-            category =>
-                category.classList.remove("active")
-        );
-
-
-        backButton.style.display =
-            "none";
-
-
-        addBusinessButton.style.display =
-            "inline-block";
-
-
-        resultsTitle.textContent =
-            translations[currentLanguage]
-                .businesses;
-
-
-        businessesList.className =
-            "businesses-list";
-
-
-        renderBusinesses();
+        showHome();
 
     }
 );
 
-
-/* =========================
-   ЛОГОТИП → ГЛАВНАЯ
-========================= */
 
 logo.addEventListener(
     "click",
     function() {
 
-        selectedCategory = "";
-
-        categories.forEach(
-            category =>
-                category.classList.remove("active")
-        );
-
-
-        backButton.style.display =
-            "none";
-
-
-        addBusinessButton.style.display =
-            "inline-block";
-
-
-        resultsTitle.textContent =
-            translations[currentLanguage]
-                .businesses;
-
-
-        businessesList.className =
-            "businesses-list";
-
-
-        renderBusinesses();
+        showHome();
 
     }
 );
 
-
-/* =========================
-   ЯЗЫКИ
-========================= */
 
 document
     .querySelectorAll(".language-button")
@@ -1754,10 +1885,6 @@ document
 
     });
 
-
-/* =========================
-   ЗАПУСК
-========================= */
 
 changeLanguage("ru");
 
